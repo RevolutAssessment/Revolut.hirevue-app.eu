@@ -198,6 +198,7 @@
                       setAnswer={setAnswer}
                       stream={stream}
                       streamStatus={streamStatus}
+                      onRequestMedia={requestMedia}
                       onAutoNext={goNext}
                     />
                   )}
