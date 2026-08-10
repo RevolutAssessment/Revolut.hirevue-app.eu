@@ -51,6 +51,8 @@ import { sjtItems } from "./sjtData.js";
         ...scaleGroup,
         sectionIntroStep("paired", "paired", pairedGroup.length),
         ...pairedGroup,
+        { type: "permission", key: "videoPermission", section: "Video Assessment" },
+        { type: "videoSetup", key: "videoSetupCheck", section: "Video Assessment" },
         sectionIntroStep("video", "video", videoGroup.length),
         ...videoGroup,
         { type: "feedback", key: "feedback", section: "Feedback" },
@@ -58,4 +60,3 @@ import { sjtItems } from "./sjtData.js";
 
       return [...onboardingSteps, ...assessmentSteps];
     }
-    
