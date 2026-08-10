@@ -1,0 +1,1 @@
+// Base64 Image Assets\\n${imgDeskteam}\\n${imgMeeting}\\n${imgSolo}\\n${imgTopMeeting}\\n\\nexport const IMAGE_MAP = {\\n  IMG_DESKTEAM,\\n  IMG_MEETING,\\n  IMG_SOLO,\\n  IMG_TOPMEETING\\n};

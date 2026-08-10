@@ -1,0 +1,31 @@
+{
+  "candidates": {
+    "demo_token_123": {
+      "token": "demo_token_123",
+      "name": "Demo Candidate",
+      "email": "candidate@revolut.com",
+      "status": "pending",
+      "createdAt": "2026-08-09T17:19:40.473Z",
+      "submittedAt": null,
+      "answers": null
+    },
+    "cand_1786296018201_di644tx": {
+      "token": "cand_1786296018201_di644tx",
+      "name": "sayyedadil",
+      "email": "sayyedadil13114@gmail.com",
+      "status": "pending",
+      "createdAt": "2026-08-09T17:20:18.201Z",
+      "submittedAt": null,
+      "answers": null
+    },
+    "cand_1786296677672_5eqca70": {
+      "token": "cand_1786296677672_5eqca70",
+      "name": "dfj",
+      "email": "skillbuddy@hdmfh.com",
+      "status": "pending",
+      "createdAt": "2026-08-09T17:31:17.672Z",
+      "submittedAt": null,
+      "answers": null
+    }
+  }
+}
