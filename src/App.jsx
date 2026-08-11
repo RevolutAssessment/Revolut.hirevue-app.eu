@@ -1,3 +1,4 @@
+
     import { useState } from "react";
     import { ChevronRight } from "lucide-react";
     import { useAssessmentState } from "./hooks/useAssessmentState.js";
@@ -81,11 +82,6 @@
       const isStepAnswerValid = (() => {
         if (!step || submitted || viewOverride) return true;
 
-        // Video Notice Cover Slide: Must have active camera stream before entering video questions
-        if (step.type === "sectionIntro" && step.data?.mainTitle === "Notice") {
-          return Boolean(stream);
-        }
-
         // SJT Questions: Both MOST and LEAST must be selected and must be different options
         if (step.type === "sjt") {
           return Boolean(currentAns?.most && currentAns?.least && currentAns.most !== currentAns.least);
@@ -116,13 +112,16 @@
         return true;
       })();
 
-      // Guarded Next Handler to guarantee step advancement is blocked when answer/camera is incomplete
+      // Guarded Next Handler to guarantee step advancement is smooth and triggers camera request if needed
       function handleNextClick() {
-        if (step?.type === "sectionIntro" && step.data?.mainTitle === "Notice" && !stream) {
-          if (requestMedia) requestMedia();
+        if ((step?.type === "permission" || (step?.type === "sectionIntro" && step.data?.mainTitle === "Notice")) && !stream) {
+          if (requestMedia) {
+            requestMedia();
+          }
+          goNext();
           return;
         }
-        if (!isStepAnswerValid) return;
+        if (!isStepAnswerValid && step?.type !== "permission" && !(step?.type === "sectionIntro" && step.data?.mainTitle === "Notice")) return;
         goNext();
       }
 
@@ -280,14 +279,12 @@
                       ) : step?.type === "permission" ? (
                         <button
                           type="button"
-                          onClick={goNext}
-                          disabled={!stream}
+                          onClick={handleNextClick}
                           className="btn-primary"
                           style={{
                             marginLeft: "auto",
-                            opacity: stream ? 1 : 0.4,
-                            cursor: stream ? "pointer" : "not-allowed",
-                            pointerEvents: stream ? "auto" : "none",
+                            opacity: 1,
+                            cursor: "pointer",
                           }}
                         >
                           Continue <ChevronRight size={16} />
