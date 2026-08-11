@@ -1,7 +1,7 @@
 import { sjtItems } from "./sjtData.js";
-    import { listeningItems } from "./listeningData.js";
     import { scaleItems, employmentItems } from "./scaleData.js";
     import { pairedItems } from "./pairedData.js";
+    import { listeningItems } from "./listeningData.js";
     import { videoItems } from "./videoData.js";
     import { sectionIntros } from "./introData.js";
 
@@ -60,3 +60,4 @@ import { sjtItems } from "./sjtData.js";
 
       return [...onboardingSteps, ...assessmentSteps];
     }
+    ──────
