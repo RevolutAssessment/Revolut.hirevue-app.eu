@@ -10,27 +10,23 @@
       <style>
         :root {
           --font-family: 'Inter', system-ui, -apple-system, sans-serif;
-          --color-primary: #1967d2;
-          --color-primary-hover: #1557b0;
+          --color-primary: #0f172a;
           --color-bg: #f8fafc;
           --color-card: #ffffff;
           --color-text: #0f172a;
           --color-muted: #64748b;
           --color-border: #e2e8f0;
-          --color-success: #16a34a;
-          --color-warning: #d97706;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: var(--font-family); }
         body { background-color: var(--color-bg); color: var(--color-text); min-height: 100vh; padding: 32px 20px; }
         .container { max-width: 960px; margin: 0 auto; }
 
-        header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid
+        header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 28px; padding-bottom: 20px; border-bottom: 1px solid
   var(--color-border); }
         .logo-badge { display: flex; align-items: center; gap: 12px; }
-        .logo-badge h1 { font-size: 20px; font-weight: 800; color: var(--color-text); letter-spacing: -0.02em; }
-        .tag { background: #eff6ff; color: var(--color-primary); font-size: 12px; font-weight: 700; padding: 4px 10px; border-radius: 999px; text-
-  transform: uppercase; }
+        .tag { background: #0f172a; color: #ffffff; font-size: 12px; font-weight: 700; padding: 4px 12px; border-radius: 999px; text-transform: uppercase;
+  letter-spacing: 0.04em; }
 
         .grid { display: grid; grid-template-columns: 1fr; gap: 28px; }
         .card { background: var(--color-card); border: 1px solid var(--color-border); border-radius: 16px; padding: 28px; box-shadow: 0 4px 20px rgba(0,0,
@@ -38,22 +34,36 @@
         .card-title { font-size: 18px; font-weight: 800; margin-bottom: 6px; }
         .card-desc { font-size: 13px; color: var(--color-muted); margin-bottom: 20px; }
 
-        .form-group { margin-bottom: 16px; }
-        label { display: block; font-size: 13px; font-weight: 700; color: #334155; margin-bottom: 6px; }
+        .form-group { margin-bottom: 14px; }
+        label { display: block; font-size: 12.5px; font-weight: 700; color: #334155; margin-bottom: 6px; }
         input { width: 100%; padding: 10px 14px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 14px; outline: none; transition: border-color
   0.2s; }
-        input:focus { border-color: var(--color-primary); box-shadow: 0 0 0 3px rgba(25,103,210,0.1); }
+        input:focus { border-color: #0f172a; box-shadow: 0 0 0 3px rgba(15,23,42,0.1); }
 
-        .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; background: var(--color-primary); color: #fff; font-weight:
-  700; font-size: 14px; padding: 11px 22px; border: none; border-radius: 8px; cursor: pointer; transition: background 0.2s; }
-        .btn:hover { background: var(--color-primary-hover); }
-        .btn-secondary { background: #f1f5f9; color: #334155; font-size: 12.5px; padding: 6px 12px; border-radius: 6px; border: 1px solid #cbd5e1; cursor:
-  pointer; }
+        .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; background: #0f172a; color: #fff; font-weight: 700; font-
+  size: 14px; padding: 11px 22px; border: none; border-radius: 8px; cursor: pointer; transition: background 0.2s; text-decoration: none; }
+        .btn:hover { background: #1e293b; }
+        .btn-secondary { background: #f1f5f9; color: #334155; font-size: 12.5px; padding: 7px 14px; border-radius: 6px; border: 1px solid #cbd5e1; cursor:
+  pointer; font-weight: 700; }
         .btn-secondary:hover { background: #e2e8f0; }
+        .btn-email { background: #ea4335; color: #fff; }
 
-        .result-box { margin-top: 20px; padding: 16px; background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 10px; display: none; }
-        .result-link { display: flex; gap: 10px; margin-top: 10px; }
-        .result-link input { font-family: monospace; background: #fff; font-size: 13px; }
+        .result-box { margin-top: 24px; padding: 20px; background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 14px; display: none; }
+
+        /* EXACT REVOLUT OFFICIAL EMAIL TEMPLATE STYLING */
+        .email-container { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; max-width: 600px; margin: 16px auto 0 auto; padding: 32px
+  28px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); font-family: 'Inter', sans-serif; color: #0f172a; text-align: left; }
+        .email-logo { text-align: center; margin-bottom: 28px; padding-bottom: 12px; border-bottom: 1px solid #f1f5f9; }
+        .email-greeting { font-size: 16px; font-weight: 700; color: #0f172a; margin-bottom: 16px; }
+        .email-text { font-size: 14px; color: #334155; line-height: 1.6; margin-bottom: 18px; }
+        .email-callout { background: #f1f5f9; border-radius: 8px; padding: 20px 24px; font-size: 15px; font-weight: 600; color: #0f172a; line-height: 1.5;
+  text-align: center; margin: 20px 0; }
+        .email-cta-wrap { text-align: center; margin: 28px 0; }
+        .email-cta-btn { display: inline-block; background: #000000; color: #ffffff !important; font-weight: 800; font-size: 15px; padding: 14px 36px;
+  border-radius: 8px; text-decoration: none; letter-spacing: 0.02em; }
+        .email-cta-btn:hover { background: #1e293b; }
+        .email-sig { font-size: 14px; color: #0f172a; line-height: 1.5; margin-top: 24px; }
+        .email-footer { font-size: 12px; color: #64748b; margin-top: 32px; padding-top: 20px; border-top: 1px solid #e2e8f0; line-height: 1.6; }
 
         table { width: 100%; border-collapse: collapse; margin-top: 12px; }
         th { text-align: left; padding: 12px 14px; font-size: 12px; font-weight: 700; color: var(--color-muted); text-transform: uppercase; background:
@@ -62,8 +72,6 @@
         .badge { display: inline-block; padding: 4px 10px; border-radius: 999px; font-size: 12px; font-weight: 700; }
         .badge-pending { background: #fef3c7; color: #92400e; }
         .badge-completed { background: #dcfce7; color: #166534; }
-
-        .empty-state { text-align: center; padding: 32px 0; color: var(--color-muted); font-size: 14px; }
       </style>
     </head>
     <body>
@@ -77,28 +85,37 @@
   1-2.2-2.7v-.9h8.6v-.3zm-8.8-1.5c.1-1.4.9-2.3 2.3-2.3s2.1.9 2.2 2.3h-4.5z" fill="#0f172a"/>
               <path d="M37 7.9l-3.8 12.3h4.3l2-7.1 2 7.1h4.3L42 7.9H37z" fill="#0f172a"/>
             </svg>
-            <span class="tag">Recruiting Link Generator Portal</span>
-          </div>
-          <div style="font-size: 13px; color: var(--color-muted); font-weight: 600;">
-            Live Vercel Link Generator
+            <span class="tag">Official Revolut Email Generator</span>
           </div>
         </header>
 
         <div class="grid">
-          <!-- Card 1: Generate Candidate Link -->
+          <!-- Card 1: Generator Form -->
           <div class="card">
-            <h2 class="card-title">Generate Single-Use Invitation Link</h2>
-            <p class="card-desc">Create a shareable candidate assessment link for any candidate. Once submitted, the link locks automatically.</p>
+            <h2 class="card-title">Create Official Revolut Invitation Email</h2>
+            <p class="card-desc">Generate candidate assessment links formatted exactly like official Revolut HireVue / Modern Hire recruitment emails.</p>
 
             <form id="linkForm">
-              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 12px;">
-                <div class="form-group" style="margin-bottom: 0;">
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                <div class="form-group">
                   <label for="candName">Candidate Full Name</label>
-                  <input type="text" id="candName" placeholder="e.g. Rahul Sharma" required />
+                  <input type="text" id="candName" placeholder="e.g. MAHIMA GURJAR" value="MAHIMA GURJAR" required />
                 </div>
-                <div class="form-group" style="margin-bottom: 0;">
-                  <label for="candEmail">Candidate Email (Optional)</label>
-                  <input type="email" id="candEmail" placeholder="e.g. rahul@example.com" />
+                <div class="form-group">
+                  <label for="candEmail">Candidate Email Address</label>
+                  <input type="email" id="candEmail" placeholder="e.g. mahima@example.com" value="mahima@example.com" required />
+                </div>
+              </div>
+
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                <div class="form-group">
+                  <label for="jobTitle">Position / Role Title</label>
+                  <input type="text" id="jobTitle" placeholder="FinCrime Analyst (Investigator)" value="FinCrime Analyst (Investigator)" required />
+                </div>
+                <div class="form-group">
+                  <label for="recruiterName">Recruiter / Manager Name</label>
+                  <input type="text" id="recruiterName" placeholder="José Luís Araujo Almendra Ferriera" value="José Luís Araujo Almendra Ferriera"
+  required />
                 </div>
               </div>
 
@@ -106,34 +123,90 @@
                 <label for="webDomain">Assessment Live Vercel Domain</label>
                 <input type="text" id="webDomain" placeholder="https://revolut-hirevue-app-eu.vercel.app" value="https://revolut-hirevue-app-eu.vercel.
   app" required />
-                <div style="font-size: 11.5px; color: var(--color-muted); margin-top: 4px;">Paste your Vercel URL here so the candidate link opens from
-  anywhere on the internet.</div>
               </div>
 
-              <button type="submit" class="btn" id="genBtn">
-                <span>⚡ Create Candidate Link</span>
+              <button type="submit" class="btn" id="genBtn" style="margin-top: 8px;">
+                <span>⚡ Generate Official Revolut Email & Link</span>
               </button>
             </form>
 
             <div class="result-box" id="resultBox">
-              <div style="font-size: 13.5px; font-weight: 700; color: #166534;">✅ Single-Use Candidate Link Generated Successfully!</div>
-              <div class="result-link">
-                <input type="text" id="generatedUrl" readonly />
-                <button type="button" class="btn btn-secondary" id="copyBtn" onclick="copyLink()">📋 Copy Link</button>
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                <div style="font-size: 14px; font-weight: 800; color: #166534;">✅ Official Revolut Email Template Ready!</div>
+                <div style="display: flex; gap: 8px;">
+                  <button type="button" class="btn btn-secondary" onclick="copyRawLink()">📋 Copy Link</button>
+                  <button type="button" class="btn btn-secondary" onclick="copyEmailHTML()">📋 Copy Email HTML</button>
+                  <a href="#" id="emailBtn" target="_blank" class="btn btn-email" style="font-size: 12.5px; padding: 6px 12px;">✉️ Send via Gmail / Mail
+  Client</a>
+                </div>
+              </div>
+
+              <!-- EXACT REVOLUT EMAIL HTML PREVIEW matching revolut mail .jpeg -->
+              <div class="email-container" id="emailHTMLCard">
+                <div class="email-logo">
+                  <svg width="140" height="32" viewBox="0 0 120 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12.5 4H4v20h4.5v-7.5h4L16 24h5.2l-3.8-8.2c2.4-.9 4.1-3 4.1-5.9 0-3.5-2.7-5.9-9-5.9zm-4 8.5V7.8h4c2.8 0 4.2 1 4.2 2.4s-1.4 2.
+  3-4.2 2.3h-4z" fill="#000000"/>
+                    <path d="M31.2 13.6c0-3.8-2.6-6-6.5-6-4.1 0-6.7 2.5-6.7 6.4 0 3.8 2.6 6.3 6.8 6.3 3.8 0 6.2-2 6.4-5.2h-4.2c-.2 1.4-1 2.1-2.2 2.1-1.4
+  0-2.2-1-2.2-2.7v-.9h8.6v-.3zm-8.8-1.5c.1-1.4.9-2.3 2.3-2.3s2.1.9 2.2 2.3h-4.5z" fill="#000000"/>
+                    <path d="M37 7.9l-3.8 12.3h4.3l2-7.1 2 7.1h4.3L42 7.9H37z" fill="#000000"/>
+                  </svg>
+                </div>
+
+                <div class="email-greeting">Hi <span id="outCandName">MAHIMA GURJAR</span>,</div>
+
+                <div class="email-text">
+                  Thank you for your interest in the <strong id="outJobTitle">FinCrime Analyst (Investigator)</strong> position at Revolut.
+                </div>
+
+                <div class="email-callout">
+                  To further evaluate your qualifications, you're invited to complete the next step in the application process — our interactive
+  assessment.
+                </div>
+
+                <div class="email-text">
+                  Please complete this assessment in a quiet location with no distractions. And take your time to read all instructions carefully before
+  responding.
+                </div>
+
+                <div class="email-text">
+                  From the time this interview request was sent, you have <strong>72 hour(s)</strong> to complete and submit. After completing and
+  submitting your responses, a notification will be sent to Revolut for review.
+                </div>
+
+                <div class="email-text">
+                  To best prepare, we advise you review the instructions and helpful tips that show before you start the assessment.
+                </div>
+
+                <div class="email-cta-wrap">
+                  <a href="#" id="outGetStartedBtn" target="_blank" class="email-cta-btn">Get Started</a>
+                </div>
+
+                <div class="email-sig">
+                  Thank you,<br />
+                  <strong id="outRecruiterName">José Luís Araujo Almendra Ferriera</strong><br />
+                  <span style="color: #64748b;">Revolut</span>
+                </div>
+
+                <div class="email-footer">
+                  <strong>Need help?</strong><br />
+                  <span style="color: #1967d2;">Modern Hire Help Centre</span> &bull; <span style="color: #1967d2;">Hirevue's Explainability
+  Statement</span><br /><br />
+                  If the button above isn't working, copy and paste this link in a browser:<br />
+                  <a href="#" id="outRawLink" target="_blank" style="color: #1967d2; word-break: break-all;">https://revolut-hirevue-app-eu.vercel.app</a>
+                </div>
               </div>
             </div>
           </div>
 
-          <!-- Card 2: Candidates List Table -->
+          <!-- Card 2: Generated Candidate Registry -->
           <div class="card">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
-              <h2 class="card-title" style="margin: 0;">Generated Link History</h2>
+              <h2 class="card-title" style="margin: 0;">Generated Candidate Invitations</h2>
               <button type="button" class="btn btn-secondary" onclick="loadCandidates()">🔄 Refresh List</button>
             </div>
-            <p class="card-desc">History of all single-use invitation links created for candidates.</p>
-
             <div id="tableContainer">
-              <div class="empty-state">Loading candidate records...</div>
+              <div style="text-align: center; color: var(--color-muted); padding: 20px 0;">Loading candidate records...</div>
             </div>
           </div>
         </div>
@@ -141,105 +214,85 @@
 
       <script>
         const API_BASE = window.location.origin;
+        let currentGeneratedUrl = '';
 
         const savedDomain = localStorage.getItem('revolut_vercel_domain') || 'https://revolut-hirevue-app-eu.vercel.app';
         document.getElementById('webDomain').value = savedDomain;
 
-        function getLocalCandidates() {
-          try {
-            const raw = localStorage.getItem('revolut_admin_candidates');
-            return raw ? JSON.parse(raw) : [];
-          } catch (e) {
-            return [];
+        function formatCleanUrl(domain, token) {
+          let cleanDomain = domain.trim();
+          if (!cleanDomain.startsWith('http://') && !cleanDomain.startsWith('https://')) {
+            cleanDomain = 'https://' + cleanDomain;
           }
-        }
-
-        function saveLocalCandidate(cand) {
-          const list = getLocalCandidates();
-          list.unshift(cand);
-          localStorage.setItem('revolut_admin_candidates', JSON.stringify(list));
+          cleanDomain = cleanDomain.replace(/\/$/, '');
+          return `${cleanDomain}/?token=${encodeURIComponent(token)}`;
         }
 
         document.getElementById('linkForm').addEventListener('submit', async (e) => {
           e.preventDefault();
-          const name = document.getElementById('candName').value.trim();
-          const email = document.getElementById('candEmail').value.trim() || `${name.toLowerCase().replace(/\s+/g, '.')}@example.com`;
+          const candName = document.getElementById('candName').value.trim();
+          const candEmail = document.getElementById('candEmail').value.trim();
+          const jobTitle = document.getElementById('jobTitle').value.trim();
+          const recruiterName = document.getElementById('recruiterName').value.trim();
           let baseUrl = document.getElementById('webDomain').value.trim() || 'https://revolut-hirevue-app-eu.vercel.app';
-          baseUrl = baseUrl.replace(/\/$/, '');
 
           localStorage.setItem('revolut_vercel_domain', baseUrl);
 
           const btn = document.getElementById('genBtn');
-          btn.innerText = 'Generating Link...';
+          btn.innerText = 'Generating Email...';
 
           const randomStr = Math.random().toString(36).substring(2, 9);
           const token = `cand_${Date.now()}_${randomStr}`;
-          const inviteLink = `${baseUrl}/?token=${token}`;
+          const inviteLink = formatCleanUrl(baseUrl, token);
 
-          // Try server API first, fallback to browser instant link generation
-          try {
-            const res = await fetch(`${API_BASE}/api/generate-link`, {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({ name, email, baseUrl }),
-            });
-            if (res.ok) {
-              const data = await res.json();
-              if (data.success && data.inviteLink) {
-                showResult(data.inviteLink, { token, name, email, createdAt: new Date().toISOString(), status: 'pending' });
-                return;
-              }
-            }
-          } catch (err) {
-            console.warn("Express backend offline, using instant browser generator.");
-          }
-
-          // Offline / Static fallback generator
-          const candObj = { token, name, email, createdAt: new Date().toISOString(), status: 'pending', inviteLink };
-          saveLocalCandidate(candObj);
-          showResult(inviteLink, candObj);
+          showEmailResult(inviteLink, candName, candEmail, jobTitle, recruiterName);
         });
 
-        function showResult(url, candObj) {
-          document.getElementById('generatedUrl').value = url;
+        function showEmailResult(url, name, email, jobTitle, recruiter) {
+          currentGeneratedUrl = url;
+          document.getElementById('outCandName').innerText = name;
+          document.getElementById('outJobTitle').innerText = jobTitle;
+          document.getElementById('outRecruiterName').innerText = recruiter;
+          document.getElementById('outGetStartedBtn').href = url;
+          document.getElementById('outRawLink').href = url;
+          document.getElementById('outRawLink').innerText = url;
           document.getElementById('resultBox').style.display = 'block';
-          document.getElementById('genBtn').innerText = '⚡ Create Candidate Link';
+          document.getElementById('genBtn').innerText = '⚡ Generate Official Revolut Email & Link';
+
+          // Setup Direct mailto: link for Gmail / Outlook
+          const mailSubject = encodeURIComponent(`Revolut Assessment Request - ${jobTitle}`);
+          const mailBody = encodeURIComponent(`Hi ${name},\n\nThank you for your interest in the ${jobTitle} position at Revolut.\n\nTo further evaluate
+  your qualifications, you're invited to complete the next step in the application process — our interactive assessment:\n\nGET STARTED / START
+  ASSESSMENT:\n${url}\n\nFrom the time this interview request was sent, you have 72 hour(s) to complete and submit.\n\nThank you,\n${recruiter}\nRevolut`);
+          document.getElementById('emailBtn').href = `mailto:${email}?subject=${mailSubject}&body=${mailBody}`;
+
           loadCandidates();
         }
 
-        function copyLink() {
-          const urlInput = document.getElementById('generatedUrl');
-          urlInput.select();
-          navigator.clipboard.writeText(urlInput.value);
-          const copyBtn = document.getElementById('copyBtn');
-          copyBtn.innerText = 'Copied! ✅';
-          setTimeout(() => copyBtn.innerText = '📋 Copy Link', 2000);
+        function copyRawLink() {
+          navigator.clipboard.writeText(currentGeneratedUrl);
+          alert('Candidate Link Copied to Clipboard!');
         }
 
-        async function loadCandidates() {
+        function copyEmailHTML() {
+          const card = document.getElementById('emailHTMLCard');
+          navigator.clipboard.writeText(card.outerHTML);
+          alert('Official Revolut Email HTML Copied! You can now paste this directly into Gmail or Outlook HTML composer.');
+        }
+
+        function loadCandidates() {
+          // Load local history
           const container = document.getElementById('tableContainer');
-          const baseUrl = (document.getElementById('webDomain').value.trim() || 'https://revolut-hirevue-app-eu.vercel.app').replace(/\/$/, '');
+          const baseUrl = document.getElementById('webDomain').value.trim() || 'https://revolut-hirevue-app-eu.vercel.app';
 
-          let candidates = [];
-
+          let raw = [];
           try {
-            const res = await fetch(`${API_BASE}/api/candidates`);
-            if (res.ok) {
-              const data = await res.json();
-              if (data.candidates && data.candidates.length > 0) {
-                candidates = data.candidates.reverse();
-              }
-            }
-          } catch (err) {
-            console.warn("Backend server not responding, loading local history.");
-          }
+            raw = JSON.parse(localStorage.getItem('revolut_admin_candidates') || '[]');
+          } catch (e) {}
 
-          if (candidates.length === 0) {
-            candidates = getLocalCandidates();
-          }
-
-          if (candidates.length === 0) {
-            container.innerHTML = '<div class="empty-state">No candidate links generated yet. Fill out the form above to create your first link.</div>';
+          if (raw.length === 0) {
+            container.innerHTML = '<div style="text-align:center; padding:20px; color: var(--color-muted);">No invitation emails generated yet. Fill the
+  form above to generate.</div>';
             return;
           }
 
@@ -250,33 +303,21 @@
                   <th>Candidate Name</th>
                   <th>Email</th>
                   <th>Status</th>
-                  <th>Created Date</th>
                   <th>Action</th>
                 </tr>
               </thead>
               <tbody>
           `;
 
-          candidates.forEach(c => {
-            const isDone = c.status === 'completed';
-            const link = c.inviteLink || `${baseUrl}/?token=${c.token}`;
-            const dateStr = new Date(c.createdAt).toLocaleDateString() + ' ' + new Date(c.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-
-  digit' });
-
+          raw.forEach(c => {
+            const link = c.inviteLink || formatCleanUrl(baseUrl, c.token);
             html += `
               <tr>
                 <td><strong>${c.name}</strong></td>
-                <td style="color: var(--color-muted);">${c.email}</td>
+                <td>${c.email}</td>
+                <td><span class="badge badge-pending">🟡 Pending</span></td>
                 <td>
-                  <span class="badge ${isDone ? 'badge-completed' : 'badge-pending'}">
-                    ${isDone ? '🟢 Submitted (Locked)' : '🟡 Pending'}
-                  </span>
-                </td>
-                <td style="font-size: 12.5px; color: var(--color-muted);">${dateStr}</td>
-                <td>
-                  <button class="btn btn-secondary" onclick="navigator.clipboard.writeText('${link}'); alert('Copied candidate link: ${link}');">
-                    📋 Copy Link
-                  </button>
+                  <button class="btn btn-secondary" onclick="navigator.clipboard.writeText('${link}'); alert('Copied: ${link}');">📋 Copy Link</button>
                 </td>
               </tr>
             `;
