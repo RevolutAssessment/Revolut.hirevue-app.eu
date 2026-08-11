@@ -1,14 +1,23 @@
- import { useEffect } from "react";
+ import { useEffect, useState } from "react";
 
     export function CompleteStep() {
+      const [countdown, setCountdown] = useState(5);
       const redirectUrl = "https://www.revolut.com/en-IN/careers/";
 
-      // Auto-redirect in the SAME tab after 5 seconds
+      // Auto-redirect in the SAME tab after 5 seconds with live countdown
       useEffect(() => {
-        const timer = setTimeout(() => {
-          window.location.href = redirectUrl;
-        }, 5000);
-        return () => clearTimeout(timer);
+        const timer = setInterval(() => {
+          setCountdown((prev) => {
+            if (prev <= 1) {
+              clearInterval(timer);
+              window.location.href = redirectUrl;
+              return 0;
+            }
+            return prev - 1;
+          });
+        }, 1000);
+
+        return () => clearInterval(timer);
       }, []);
 
       return (
@@ -29,8 +38,9 @@
               Your responses have been submitted.
             </h1>
 
-            <p style={{ fontSize: 14, color: "#475467", lineHeight: 1.6, marginBottom: 20 }}>
-              We are returning you back to the applicant tracking system. Please allow up to 5 seconds.
+            <p style={{ fontSize: 14.5, color: "#475467", lineHeight: 1.6, marginBottom: 20 }}>
+              We are returning you back to the applicant tracking system in{" "}
+              <strong style={{ color: "#2563EB", fontSize: 16 }}>{countdown} seconds</strong>…
             </p>
 
             <div>
