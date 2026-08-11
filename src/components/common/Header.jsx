@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+ import { useState, useRef, useEffect } from "react";
     import { RevolutLogo } from "./RevolutLogo.jsx";
     import { User, HelpCircle, ExternalLink } from "lucide-react";
 
@@ -12,11 +12,11 @@ import { useState, useRef, useEffect } from "react";
       useEffect(() => {
         function handleClickOutside(e) {
           if (menuRef.current && !menuRef.current.contains(e.target)) {
-          }
             setMenuOpen(false);
+          }
         }
-        document.addEventListener("mousedown", handleClickOutside);
-        return () => document.removeEventListener("mousedown", handleClickOutside);
+        document.addEventListener("pointerdown", handleClickOutside);
+        return () => document.removeEventListener("pointerdown", handleClickOutside);
       }, []);
 
       return (
@@ -84,17 +84,18 @@ import { useState, useRef, useEffect } from "react";
                     position: "absolute",
                     top: "calc(100% + 6px)",
                     right: 0,
-                    zIndex: 999,
+                    zIndex: 9999,
                     width: 170,
                     background: "#ffffff",
                     border: "1px solid #E2E8F0",
                     borderRadius: 8,
-                    boxShadow: "0 10px 25px rgba(0,0,0,0.1)",
+                    boxShadow: "0 10px 25px rgba(0,0,0,0.15)",
                     padding: "6px 0",
                   }}
                 >
                   <button
                     type="button"
+                    onPointerDown={(e) => e.stopPropagation()}
                     onClick={() => {
                       setMenuOpen(false);
                       if (onOpenDashboard) onOpenDashboard();
@@ -102,7 +103,7 @@ import { useState, useRef, useEffect } from "react";
                     style={{
                       width: "100%",
                       textAlign: "left",
-                      padding: "9px 16px",
+                      padding: "10px 16px",
                       fontSize: 13,
                       color: "#1E293B",
                       fontWeight: 600,
@@ -120,11 +121,12 @@ import { useState, useRef, useEffect } from "react";
                     href={HIREVUE_PRIVACY_URL}
                     target="_blank"
                     rel="noreferrer"
+                    onPointerDown={(e) => e.stopPropagation()}
                     style={{
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "space-between",
-                      padding: "9px 16px",
+                      padding: "10px 16px",
                       fontSize: 13,
                       color: "#1E293B",
                       textDecoration: "none",
@@ -140,6 +142,7 @@ import { useState, useRef, useEffect } from "react";
 
                   <button
                     type="button"
+                    onPointerDown={(e) => e.stopPropagation()}
                     onClick={() => {
                       setMenuOpen(false);
                       if (onLogout) onLogout();
@@ -147,7 +150,7 @@ import { useState, useRef, useEffect } from "react";
                     style={{
                       width: "100%",
                       textAlign: "left",
-                      padding: "9px 16px",
+                      padding: "10px 16px",
                       fontSize: 13,
                       color: "#DC2626",
                       fontWeight: 600,
