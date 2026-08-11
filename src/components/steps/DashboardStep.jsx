@@ -1,11 +1,59 @@
- import { Video, ChevronRight, CheckCircle2 } from "lucide-react";
+ import { useState, useEffect } from "react";
+    import { Video, CheckCircle2 } from "lucide-react";
 
     export function DashboardStep({ submitted, onContinue }) {
+      const [countdown, setCountdown] = useState(5);
+      const redirectUrl = "https://www.revolut.com/en-IN/careers/";
+
+      useEffect(() => {
+        if (!submitted) return;
+
+        const timer = setInterval(() => {
+          setCountdown((prev) => {
+            if (prev <= 1) {
+              clearInterval(timer);
+              window.location.href = redirectUrl;
+              return 0;
+            }
+            return prev - 1;
+          });
+        }, 1000);
+
+        return () => clearInterval(timer);
+      }, [submitted]);
+
       return (
         <div className="animate-fade-in" style={{ width: "100%", maxWidth: 860, margin: "0 auto" }}>
-          <h1 style={{ fontSize: 24, fontWeight: 800, color: "#0F172A", marginBottom: 24, fontFamily: "var(--font-heading)" }}>
+          <h1 style={{ fontSize: 24, fontWeight: 800, color: "#0F172A", marginBottom: 20, fontFamily: "var(--font-heading)" }}>
             Your opportunity at Revolut
           </h1>
+
+          {submitted && (
+            <div
+              style={{
+                background: "#EFF6FF",
+                border: "1px solid #BFDBFE",
+                borderRadius: 12,
+                padding: "14px 20px",
+                marginBottom: 20,
+                display: "flex",
+                alignItems: "center",
+                justify: "space-between",
+                gap: 12,
+              }}
+            >
+              <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+                <CheckCircle2 size={20} color="#2563EB" />
+                <span style={{ fontSize: 13.5, fontWeight: 600, color: "#1E3A8A" }}>
+                  Assessment Completed & Submitted.
+                </span>
+              </div>
+
+              <div style={{ fontSize: 13, fontWeight: 700, color: "#2563EB" }}>
+                Redirecting to Revolut Careers in {countdown}s…
+              </div>
+            </div>
+          )}
 
           <div
             style={{
@@ -21,7 +69,7 @@
               style={{
                 display: "flex",
                 alignItems: "center",
-                justifyContent: "space-between",
+                justify: "space-between",
                 paddingBottom: 20,
                 marginBottom: 20,
                 borderBottom: "1px solid #F1F5F9",
@@ -67,7 +115,7 @@
                     className="btn-primary"
                     style={{ padding: "9px 20px", fontSize: 13.5 }}
                   >
-                    Continue <ChevronRight size={15} />
+                    Continue &gt;
                   </button>
                 )}
               </div>
@@ -78,7 +126,7 @@
               style={{
                 display: "flex",
                 alignItems: "center",
-                justifyContent: "space-between",
+                justify: "space-between",
                 gap: 16,
               }}
             >
@@ -121,7 +169,7 @@
                     className="btn-primary"
                     style={{ padding: "9px 20px", fontSize: 13.5 }}
                   >
-                    Continue <ChevronRight size={15} />
+                    Continue &gt;
                   </button>
                 )}
               </div>
