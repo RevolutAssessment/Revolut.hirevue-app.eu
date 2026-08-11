@@ -23,7 +23,7 @@ import { sjtItems } from "./sjtData.js";
         data: sectionIntros[kind],
         count,
         key: "intro-" + key,
-        section: kind === "video" ? "Video Assessment" : "Introduction",
+        section: "Introduction",
       });
 
       const videoGroup = videoItems.map((v, idx) => ({
@@ -52,8 +52,8 @@ import { sjtItems } from "./sjtData.js";
         sectionIntroStep("paired", "paired", pairedGroup.length),
         ...pairedGroup,
         sectionIntroStep("video", "video", videoGroup.length),
-        { type: "permission", key: "videoPermission", section: "Video Assessment" },
-        { type: "videoSetup", key: "videoSetupCheck", section: "Video Assessment" },
+        { type: "permission", key: "videoPermission", section: "Introduction" },
+        { type: "videoSetup", key: "videoSetupCheck", section: "Introduction" },
         ...videoGroup,
         { type: "feedback", key: "feedback", section: "Feedback" },
       ];
