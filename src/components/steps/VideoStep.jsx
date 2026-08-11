@@ -1,6 +1,7 @@
-import { useState, useRef, useEffect } from "react";
+
+    import { useState, useRef, useEffect } from "react";
     import { ScenarioCard } from "../common/ScenarioCard.jsx";
-    import { Video, Circle, Square, RotateCcw, Check, Film, ArrowRight, RefreshCw } from "lucide-react";
+    import { Video, Circle, Square, RotateCcw, Check, Film, ArrowRight, RefreshCw, AlertTriangle } from "lucide-react";
 
     function getRecorderMimeType() {
       if (typeof MediaRecorder === "undefined") return "";
@@ -32,6 +33,14 @@ import { useState, useRef, useEffect } from "react";
       const timerRef = useRef(null);
       const MAX_SECONDS = 180;
 
+      // Auto-request media stream if stream is missing when arriving at VideoStep
+      useEffect(() => {
+        if (!stream && onRequestMedia && !previewUrl) {
+          console.log("Stream missing on VideoStep, triggering auto-request for camera...");
+          onRequestMedia();
+        }
+      }, [stream, onRequestMedia, previewUrl]);
+
       useEffect(() => {
         if (stream && videoRef.current && !previewUrl) {
           videoRef.current.srcObject = stream;
@@ -50,7 +59,7 @@ import { useState, useRef, useEffect } from "react";
       function startRecording() {
         if (!stream) {
           if (onRequestMedia) onRequestMedia();
-          setRecordError("Camera access is required. Click Re-connect Camera below.");
+          setRecordError("Camera access is required. Please click Turn On Camera below.");
           return;
         }
         if (typeof MediaRecorder === "undefined") {
@@ -130,7 +139,7 @@ import { useState, useRef, useEffect } from "react";
           }, 1000);
         } catch (err) {
           console.error("Could not start MediaRecorder:", err);
-          setRecordError("Could not start recorder. Click Re-connect Camera to allow access.");
+          setRecordError("Could not start recorder. Click Turn On Camera to allow access.");
         }
       }
 
@@ -211,6 +220,40 @@ import { useState, useRef, useEffect } from "react";
 
           <ScenarioCard text={item.prompt} />
 
+          {/* Prominent Camera Permission Alert Banner if stream is disconnected */}
+          {!stream && !previewUrl && (
+            <div
+              style={{
+                marginTop: 14,
+                background: "#FEF2F2",
+                border: "1.5px solid #FECACA",
+                borderRadius: 12,
+                padding: "16px 20px",
+                textAlign: "center",
+                boxShadow: "0 4px 15px rgba(220,38,38,0.08)",
+              }}
+            >
+              <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 8, color: "#991B1B", fontSize: 14, fontWeight: 800,
+  marginBottom: 6 }}>
+                <AlertTriangle size={20} color="#DC2626" /> Camera & Microphone Access Off or Disconnected
+              </div>
+              <p style={{ fontSize: 13, color: "#7F1D1D", lineHeight: 1.5, marginBottom: 14, maxWidth: 500, margin: "0 auto 14px auto" }}>
+                Camera permission is required to record your response for Video Question {item.videoNumber}. Please click the button below to turn on your
+  camera and microphone.
+              </p>
+              {onRequestMedia && (
+                <button
+                  type="button"
+                  onClick={onRequestMedia}
+                  className="btn-primary"
+                  style={{ padding: "11px 24px", fontSize: 14, gap: 8, background: "#DC2626", margin: "0 auto" }}
+                >
+                  <Video size={18} /> Turn On Camera & Microphone Now
+                </button>
+              )}
+            </div>
+          )}
+
           {/* Video Viewport */}
           <div
             style={{
@@ -250,8 +293,8 @@ import { useState, useRef, useEffect } from "react";
 
             {!stream && !previewUrl && (
               <div style={{ color: "#B8C1D1", textAlign: "center", fontSize: 13, padding: 16 }}>
-                <Video size={28} style={{ marginBottom: 8 }} />
-                <div style={{ marginBottom: 10 }}>Camera stream disconnected or not active.</div>
+                <Video size={32} style={{ marginBottom: 8, opacity: 0.6 }} />
+                <div style={{ marginBottom: 10, fontWeight: 600 }}>Camera feed disconnected</div>
                 {onRequestMedia && (
                   <button
                     type="button"
@@ -259,7 +302,7 @@ import { useState, useRef, useEffect } from "react";
                     className="btn-primary"
                     style={{ padding: "8px 16px", fontSize: 12.5, gap: 6 }}
                   >
-                    <RefreshCw size={13} /> Re-connect Camera & Microphone
+                    <RefreshCw size={13} /> Re-connect Camera
                   </button>
                 )}
               </div>
@@ -316,8 +359,8 @@ import { useState, useRef, useEffect } from "react";
             )}
 
             {!stream && !previewUrl && (
-              <button onClick={onRequestMedia} className="btn-primary" style={{ padding: "10px 20px", fontSize: 13.5, gap: 6 }}>
-                <RefreshCw size={15} /> Re-connect Camera & Microphone
+              <button onClick={onRequestMedia} className="btn-primary" style={{ padding: "10px 22px", fontSize: 14, gap: 8 }}>
+                <Video size={16} /> Turn On Camera & Microphone
               </button>
             )}
 
