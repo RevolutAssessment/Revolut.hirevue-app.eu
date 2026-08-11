@@ -22,3 +22,21 @@
         },
       },
     ])
+    ──────
+  In teeno files ko Commit karte hi Vercel ka Error 100% Fixed hokar 🟢 Ready (Production) ho jayega! 🚀
+
+────────────────────────────────────────────────────────────
+> ...videoGroup,
+          { type: "feedback", key: "feedback", section: "Feedback" },
+        ];
+
+        return [...onboardingSteps, ...assessmentSteps];
+      }
+      ────── ye niche ki line rkhna hai ya nhi
+
+  HAAN, BILKUL 100% RAKHNA HAI! YE SABSE ZAROORI LINE HAI! 🎯
+
+  Agar aap ye line nahi rakhoge:
+
+      return [...onboardingSteps, ...assessmentSteps];
+    }
