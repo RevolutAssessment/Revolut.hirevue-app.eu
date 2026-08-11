@@ -1,5 +1,4 @@
-
-    import { useState } from "react";
+ import { useState, useEffect } from "react";
     import { ChevronRight } from "lucide-react";
     import { useAssessmentState } from "./hooks/useAssessmentState.js";
 
@@ -52,11 +51,38 @@
       const [showFinishLaterModal, setShowFinishLaterModal] = useState(false);
       const [viewOverride, setViewOverride] = useState(null); // null | "dashboard" | "logout"
 
+      const redirectUrl = "https://www.revolut.com/en-IN/careers/";
+
       // Hide section question counter badge for onboarding, cover slides, and feedback step
       const showSectionProgress = !submitted && step && !viewOverride && !["dataProcessing", "disclaimer", "aiConsent", "permission", "videoSetup",
   "monitoring", "sectionIntro", "intro", "feedback"].includes(step.type);
       const showThumbnail = stream && step && !viewOverride && !["dataProcessing", "disclaimer", "aiConsent", "permission", "videoSetup", "monitoring",
   "video", "sectionIntro", "intro", "feedback"].includes(step.type);
+
+      // Active question state check (In the middle of an active section question)
+      const isMidQuestion = !submitted && !viewOverride && step && !["dataProcessing", "disclaimer", "aiConsent", "permission", "videoSetup", "monitoring",
+  "sectionIntro", "intro", "feedback"].includes(step.type);
+
+      // Browser Window Close Guard: Prevent accidental close midway through a section question
+      useEffect(() => {
+        if (!isMidQuestion) return;
+        function handleBeforeUnload(e) {
+          e.preventDefault();
+          e.returnValue = "Please complete this section first before leaving.";
+          return e.returnValue;
+        }
+        window.addEventListener("beforeunload", handleBeforeUnload);
+        return () => window.removeEventListener("beforeunload", handleBeforeUnload);
+      }, [isMidQuestion]);
+
+      // Handle Logout attempting during active section question
+      function handleLogoutAttempt() {
+        if (isMidQuestion) {
+          alert("Please complete all questions in this section first before exiting.");
+          return;
+        }
+        setViewOverride("logout");
+      }
 
       // Dynamic Section Progress calculations (Paired = 52 questions, Video = 5 questions, etc.)
       const currentAns = step ? answers[step.key] : null;
@@ -138,11 +164,12 @@
         );
       }
 
+      // PERMANENT SINGLE-USE LINK LOCK: Render DashboardStep if candidate opens an already completed link
       if (alreadyCompleted) {
         return (
           <div style={{ padding: "28px 16px" }}>
             <div className="main-wrapper">
-              <Header onOpenDashboard={() => setViewOverride("dashboard")} onLogout={() => setViewOverride("logout")} />
+              <Header onOpenDashboard={() => setViewOverride("dashboard")} onLogout={handleLogoutAttempt} />
               <div className="assessment-card">
                 <DashboardStep submitted={true} onContinue={() => setViewOverride(null)} />
               </div>
@@ -178,7 +205,7 @@
               sectionTotal={sectionTotal}
               showProgress={showSectionProgress}
               onOpenDashboard={() => setViewOverride("dashboard")}
-              onLogout={() => setViewOverride("logout")}
+              onLogout={handleLogoutAttempt}
             />
 
             {showSectionProgress && (
@@ -337,7 +364,7 @@
             onClose={() => setShowFinishLaterModal(false)}
             onSaveAndExit={() => {
               setShowFinishLaterModal(false);
-              alert("Your assessment progress has been saved. You may close this window and resume later.");
+              window.location.href = redirectUrl;
             }}
           />
         </div>
