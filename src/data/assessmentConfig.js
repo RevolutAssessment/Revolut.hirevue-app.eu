@@ -59,5 +59,4 @@ import { sjtItems } from "./sjtData.js";
       ];
 
       return [...onboardingSteps, ...assessmentSteps];
-    }
-    ──────
+    } 
