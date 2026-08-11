@@ -51,20 +51,40 @@
       const [showFinishLaterModal, setShowFinishLaterModal] = useState(false);
       const [viewOverride, setViewOverride] = useState(null); // null | "dashboard" | "logout"
 
-      // Section progress calculations
-      const sectionSteps = step ? steps.filter((s) => s.section === step.section) : [];
-      const sectionIndex = step ? sectionSteps.findIndex((s) => s.key === step.key) + 1 : 0;
+      // Hide section question counter badge for onboarding, cover slides, and feedback step
       const showSectionProgress = !submitted && step && !viewOverride && !["dataProcessing", "disclaimer", "aiConsent", "permission", "videoSetup",
-  "monitoring", "sectionIntro", "intro"].includes(step.type);
+  "monitoring", "sectionIntro", "intro", "feedback"].includes(step.type);
       const showThumbnail = stream && step && !viewOverride && !["dataProcessing", "disclaimer", "aiConsent", "permission", "videoSetup", "monitoring",
-  "video", "sectionIntro", "intro"].includes(step.type);
+  "video", "sectionIntro", "intro", "feedback"].includes(step.type);
+
+      // Dynamic Section Progress calculations (Paired = 52 questions, Video = 5 questions, etc.)
+      const currentAns = step ? answers[step.key] : null;
+      const sectionSteps = step ? steps.filter((s) => s.section === step.section) : [];
+
+      let sectionIndex = 0;
+      let sectionTotal = sectionSteps.length;
+
+      if (step?.type === "pairedPage") {
+        // Section 4 Paired: Track 52 total items instead of 9 pages
+        sectionTotal = 52;
+        const pageIndex = parseInt(step.key.replace("pairedpage-", ""), 10) || 0;
+        const priorCount = pageIndex * 6;
+        const answeredOnPage = currentAns ? Object.keys(currentAns).length : 0;
+        sectionIndex = Math.min(52, Math.max(1, priorCount + answeredOnPage + (answeredOnPage === 0 ? 1 : 0)));
+      } else if (step) {
+        sectionIndex = sectionSteps.findIndex((s) => s.key === step.key) + 1;
+      }
 
       const isFirstStep = idx === 0;
 
       // STRICT ANSWER VALIDATION: Candidate CANNOT advance without selecting valid answers
-      const currentAns = step ? answers[step.key] : null;
       const isStepAnswerValid = (() => {
         if (!step || submitted || viewOverride) return true;
+
+        // Video Notice Cover Slide: Must have active camera stream before entering video questions
+        if (step.type === "sectionIntro" && step.data?.mainTitle === "Notice") {
+          return Boolean(stream);
+        }
 
         // SJT Questions: Both MOST and LEAST must be selected and must be different options
         if (step.type === "sjt") {
@@ -96,8 +116,12 @@
         return true;
       })();
 
-      // Guarded Next Handler to guarantee step advancement is blocked when answer is incomplete
+      // Guarded Next Handler to guarantee step advancement is blocked when answer/camera is incomplete
       function handleNextClick() {
+        if (step?.type === "sectionIntro" && step.data?.mainTitle === "Notice" && !stream) {
+          if (requestMedia) requestMedia();
+          return;
+        }
         if (!isStepAnswerValid) return;
         goNext();
       }
@@ -152,7 +176,7 @@
             <Header
               currentSection={step?.section}
               sectionIndex={sectionIndex}
-              sectionTotal={sectionSteps.length}
+              sectionTotal={sectionTotal}
               showProgress={showSectionProgress}
               onOpenDashboard={() => setViewOverride("dashboard")}
               onLogout={() => setViewOverride("logout")}
@@ -182,7 +206,15 @@
                   {!submitted && step?.type === "monitoring" && <MonitoringConsentStep key={step.key} agreed={monitoringAgreed}
   setAgreed={setMonitoringAgreed} stream={stream} />}
 
-                  {!submitted && step?.type === "sectionIntro" && <SectionIntroStep key={step.key} data={step.data} count={step.count} />}
+                  {!submitted && step?.type === "sectionIntro" && (
+                    <SectionIntroStep
+                      key={step.key}
+                      data={step.data}
+                      count={step.count}
+                      stream={stream}
+                      onRequestMedia={requestMedia}
+                    />
+                  )}
                   {!submitted && step?.type === "sjt" && <SJTStep key={step.key} item={step.data} answer={answers[step.key]} setAnswer={setAnswer} />}
                   {!submitted && step?.type === "pairedPage" && <PairedPageStep key={step.key} items={step.data} answer={answers[step.key]}
   setAnswer={setAnswer} />}
@@ -197,7 +229,6 @@
                       answer={answers[step.key]}
                       setAnswer={setAnswer}
                       stream={stream}
-                      streamStatus={streamStatus}
                       onRequestMedia={requestMedia}
                       onAutoNext={goNext}
                     />
@@ -315,4 +346,3 @@
         </div>
       );
     }
-    
