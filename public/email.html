@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+    <!DOCTYPE html>
     <html lang="en">
     <head>
       <meta charset="UTF-8" />
@@ -51,11 +51,13 @@
         .btn-secondary { background: #f1f5f9; color: #334155; font-size: 12.5px; padding: 7px 14px; border-radius: 6px; border: 1px solid #cbd5e1; cursor:
   pointer; font-weight: 700; }
         .btn-secondary:hover { background: #e2e8f0; }
-        .btn-email { background: #ea4335; color: #fff; }
+        .btn-copy-rich { background: #2563eb; color: #ffffff; font-size: 13.5px; padding: 10px 20px; border-radius: 6px; border: none; cursor: pointer;
+  font-weight: 800; }
+        .btn-copy-rich:hover { background: #1d4ed8; }
 
         .result-box { margin-top: 24px; padding: 20px; background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 14px; }
 
-        /* EXACT REVOLUT OFFICIAL EMAIL STYLING MATCHING SCREENSHOTS */
+        /* EXACT REVOLUT OFFICIAL EMAIL STYLING */
         .email-container { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; max-width: 600px; margin: 16px auto 0 auto; padding: 32px
   28px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); font-family: 'Inter', system-ui, -apple-system, sans-serif; color: #0f172a; text-align: left; }
         .email-logo { text-align: center; margin-bottom: 28px; padding-bottom: 12px; border-bottom: 1px solid #f1f5f9; }
@@ -63,26 +65,19 @@
         .email-text { font-size: 14px; color: #334155; line-height: 1.6; margin-bottom: 18px; }
         .email-callout { background: #f1f5f9; border-radius: 8px; padding: 20px 24px; font-size: 15px; font-weight: 600; color: #0f172a; line-height: 1.5;
   text-align: center; margin: 20px 0; }
-        .email-cta-wrap { text-align: left; margin: 24px 0; }
-        .email-cta-btn { display: inline-block; background: #0044FF; color: #ffffff !important; font-weight: 700; font-size: 15px; padding: 14px 36px;
-  border-radius: 6px; text-decoration: none; letter-spacing: 0.01em; }
         .email-sig { font-size: 14px; color: #0f172a; line-height: 1.6; margin-top: 24px; }
         .email-footer { font-size: 12.5px; color: #64748b; margin-top: 32px; padding-top: 20px; border-top: 1px solid #e2e8f0; line-height: 1.6; }
 
-        .social-links { display: flex; gap: 14px; color: #94a3b8; font-size: 16px; margin: 20px 0; }
+        .social-icon-img { width: 22px; height: 22px; vertical-align: middle; margin-right: 12px; display: inline-block; }
+        .footer-legal-text { font-size: 11.5px; color: #94a3b8; line-height: 1.5; margin-top: 16px; }
+        .footer-address-link { color: #1967d2 !important; text-decoration: underline; }
       </style>
     </head>
     <body>
       <div class="container">
         <header>
           <div class="logo-badge">
-            <svg width="120" height="28" viewBox="0 0 120 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M12.5 4H4v20h4.5v-7.5h4L16 24h5.2l-3.8-8.2c2.4-.9 4.1-3 4.1-5.9 0-3.5-2.7-5.9-9-5.9zm-4 8.5V7.8h4c2.8 0 4.2 1 4.2 2.4s-1.4 2.3-4.2
-  2.3h-4z" fill="#0f172a"/>
-              <path d="M31.2 13.6c0-3.8-2.6-6-6.5-6-4.1 0-6.7 2.5-6.7 6.4 0 3.8 2.6 6.3 6.8 6.3 3.8 0 6.2-2 6.4-5.2h-4.2c-.2 1.4-1 2.1-2.2 2.1-1.4 0-2.2-
-  1-2.2-2.7v-.9h8.6v-.3zm-8.8-1.5c.1-1.4.9-2.3 2.3-2.3s2.1.9 2.2 2.3h-4.5z" fill="#0f172a"/>
-              <path d="M37 7.9l-3.8 12.3h4.3l2-7.1 2 7.1h4.3L42 7.9H37z" fill="#0f172a"/>
-            </svg>
+            <span style="font-size: 24px; font-weight: 900; color: #000000; letter-spacing: -0.03em;">Revolut</span>
             <span class="tag">Official Revolut 4-Email Template Studio</span>
           </div>
           <div>
@@ -130,20 +125,33 @@
               </div>
             </div>
 
-            <div class="form-group" id="assessmentLinkGroup">
-              <label for="candidateLink">Assessment Single-Use Link (For Email 2 & 4)</label>
-              <input type="text" id="candidateLink" placeholder="https://revolut-hirevue-app-eu.vercel.app/?token=cand_..." value="https://revolut-
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+              <div class="form-group" id="assessmentLinkGroup">
+                <label for="candidateLink">Assessment Single-Use Link (Target for Get Started Button)</label>
+                <input type="text" id="candidateLink" placeholder="https://revolut-hirevue-app-eu.vercel.app/?token=cand_..." value="https://revolut-
   hirevue-app-eu.vercel.app" oninput="updateEmailPreview()" />
+              </div>
+              <div class="form-group">
+                <label for="fallbackTextUrl">Fallback Text URL (At bottom of Email 2)</label>
+                <input type="text" id="fallbackTextUrl" value="https://seu.hvue.io/1h7GOqkWVpvg7jtm" oninput="updateEmailPreview()" />
+              </div>
             </div>
 
             <div class="result-box">
               <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; flex-wrap: wrap; gap: 10px;">
                 <div style="font-size: 14px; font-weight: 800; color: #166534;" id="patternTitleText">1️⃣ Application Confirmed Email Preview</div>
                 <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-                  <button type="button" class="btn btn-secondary" onclick="copyEmailHTML()">📋 Copy Email HTML Code</button>
-                  <button type="button" class="btn btn-secondary" onclick="copyEmailText()">📋 Copy Plain Text</button>
-                  <button type="button" class="btn btn-email" onclick="launchEmailProvider()">✉️ Send via Email Client</button>
+                  <button type="button" class="btn-copy-rich" onclick="copyFormattedVisualCard()">✨ Copy Rich Formatted Email (For
+  Gmail/Titan/Zoho)</button>
+                  <button type="button" class="btn btn-secondary" onclick="copyEmailHTML()">📋 Copy HTML Code</button>
                 </div>
+              </div>
+
+              <div style="font-size: 12.5px; color: #1e3a8a; margin-bottom: 14px; background: #eff6ff; border: 1px solid #bfdbfe; padding: 10px 14px;
+  border-radius: 8px; line-height: 1.5;">
+                💡 <strong>How to get Solid Blue Button & Revolut Logo in Gmail / Titan / Zoho:</strong><br />
+                Click <strong>"✨ Copy Rich Formatted Email"</strong> button, open Compose in Gmail/Titan/Zoho, and press <strong>Ctrl + V
+  (Paste)</strong>!
               </div>
 
               <!-- DYNAMIC EMAIL PREVIEW CONTAINER -->
@@ -157,11 +165,29 @@
         let selectedPatternKey = 'confirm';
 
         // Official Links provided in screenshot instructions:
-        const REVOLUT_LOGO_URL = "https://click.revolut.com/f/a/mn9UfZ6KYB7dRgwI5kVqAQ~~/AAD4-xA~/JytqIwQ2JAPUJ-JEEKF836Im-Ni5DxMAJhwTzlHHGTTQZ_Z_f-
+        const REVOLUT_LOGO_CLICK_URL = "https://click.revolut.com/f/a/mn9UfZ6KYB7dRgwI5kVqAQ~~/AAD4-xA~/JytqIwQ2JAPUJ-JEEKF836Im-Ni5DxMAJhwTzlHHGTTQZ_Z_f-
   Zg1EMLzUXUJUbFsdSPZL8gn-Pu7yGW5XM6QwsWRgcniI0tEgirRSoOL8Q~";
         const MODERN_HIRE_HELP_URL = "https://revolut.hirevue-app.eu/router/help";
         const HIREVUE_EXPLAINABILITY_URL = "https://webapi.hirevue.com/wp-content/uploads/2022/04/HV_AI_Short-Form_Explainability_1pager.pdf?_ga=2.
   66983982.1896615504.1707838182-2104363993.1707838182";
+
+        // User's exact social, data privacy, and address map links:
+        const SOCIAL_X_IMG_URL = "https://ci3.googleusercontent.
+  com/meips/ADKq_NZp5G2mnlN2VGN37TEQwNwvWUPMztWpDM2Fhm4lnwjAFnganSM_O7VKMVgQuTV80__fq96BUgENUpPydYpXlXvzTfXwoQLC4sK_pg=s0-d-e1-ft#https://assets.revolut.
+  com/email/_shared/social-x.png";
+        const SOCIAL_FB_IMG_URL = "https://ci3.googleusercontent.com/meips/ADKq_NZWz1vmVgBzUkOY8W3BhhdPiWHMMsH8Lxd0p5Kt8pC7Y-
+  oDigG6PW5_FRDivVdBSftOhrNpQg7spxq4DU1304H-iVd-4mjoB6LR7n5Ejom2VGw=s0-d-e1-ft#https://assets.revolut.com/email/_shared/social-facebook.png";
+        const SOCIAL_IG_IMG_URL = "https://ci3.googleusercontent.
+  com/meips/ADKq_NYnz4DlpNp5UasN9GrA_FbUR8U_7vRdzu28o5ROy4reYNseSh2lNrrzHougPile2crZuz1v8nU330-YkoXLxd_ky4YMAFKrG0cSgiYxWE_Whqxr=s0-d-e1-
+  ft#https://assets.revolut.com/email/_shared/social-instagram.png";
+        const SOCIAL_LI_IMG_URL = "https://ci3.googleusercontent.com/meips/ADKq_NYbaIRjMEHs4SGmN-
+  G8JNnon5qgkmSx06One9waJTmgapiCZh40McOJcH7KqfY3HgcAya0VM1NpEaH9THhh6UyNz0kt3ygtw07TKOhRltyDOSE=s0-d-e1-ft#https://assets.revolut.
+  com/email/_shared/social-linkedin.png";
+
+        const DATA_PRIVACY_URL = "https://click.revolut.com/f/a/thGmTbxp8w_NKEI-l9uTtA~~/AAD4-xA~/EEo7yMhX7YXCAhY9zAa3TDqhyHo9I4aBAl-Zq-
+  cwSsfoQliCRPBqCXjKtnUnqR_1TBG7vappPWuji8F7iLS5do5B6lZ3QfZ3gZk-cH_7Nw0FFGDnH70SN83qREU6DHXKZlXj2GaQ7ZrN26IBZfVqF9BPe2keLv6mktj1EULVEMg~";
+        const FIRST_ADDR_MAP_URL = "https://www.google.com/maps/search/107+Cheapside,+London,+EC2V+6DN,+United+Kingdom?entry=gmail&source=g";
+        const SECOND_ADDR_MAP_URL = "https://www.google.com/maps/search/7+Westferry+Circus,+London,+E14+4HD,+United+Kingdom?entry=gmail&source=g";
 
         function selectPattern(key) {
           selectedPatternKey = key;
@@ -185,170 +211,62 @@
           const recruiter = document.getElementById('recruiterName').value.trim();
           const recruiterEmail = document.getElementById('recruiterEmail').value.trim();
           const url = document.getElementById('candidateLink').value.trim() || 'https://revolut-hirevue-app-eu.vercel.app';
+          const fallbackUrl = document.getElementById('fallbackTextUrl').value.trim() || 'https://seu.hvue.io/1h7GOqkWVpvg7jtm';
 
           const card = document.getElementById('emailHTMLCard');
 
-          // Shared Logo Header linking to official Revolut click URL
+          // 100% Bulletproof Revolut Logo Table Header
           const logoHeader = `
-            <div class="email-logo">
-              <a href="${REVOLUT_LOGO_URL}" target="_blank">
-                <svg width="140" height="32" viewBox="0 0 120 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M12.5 4H4v20h4.5v-7.5h4L16 24h5.2l-3.8-8.2c2.4-.9 4.1-3 4.1-5.9 0-3.5-2.7-5.9-9-5.9zm-4 8.5V7.8h4c2.8 0 4.2 1 4.2 2.4s-1.4 2.3-
-  4.2 2.3h-4z" fill="#000000"/>
-                  <path d="M31.2 13.6c0-3.8-2.6-6-6.5-6-4.1 0-6.7 2.5-6.7 6.4 0 3.8 2.6 6.3 6.8 6.3 3.8 0 6.2-2 6.4-5.2h-4.2c-.2 1.4-1 2.1-2.2 2.1-1.4 0-
-  2.2-1-2.2-2.7v-.9h8.6v-.3zm-8.8-1.5c.1-1.4.9-2.3 2.3-2.3s2.1.9 2.2 2.3h-4.5z" fill="#000000"/>
-                  <path d="M37 7.9l-3.8 12.3h4.3l2-7.1 2 7.1h4.3L42 7.9H37z" fill="#000000"/>
-                </svg>
+            <div class="email-logo" style="text-align: center; margin-bottom: 24px; padding-bottom: 12px; border-bottom: 1px solid #f1f5f9;">
+              <a href="${REVOLUT_LOGO_CLICK_URL}" target="_blank" style="text-decoration: none;">
+                <span style="font-family: 'Inter', system-ui, sans-serif; font-size: 32px; font-weight: 900; color: #000000; letter-spacing: -0.04em;
+  display: inline-block;">Revolut</span>
               </a>
             </div>
           `;
 
-          if (selectedPatternKey === 'confirm') {
-            // EMAIL 1: Application Confirmed (Screenshot 195038, 195105, 195118)
-            card.innerHTML = `
-              ${logoHeader}
-              <div class="email-greeting" style="font-size: 24px; font-weight: 800;">Hi ${name},</div>
-              <div class="email-text">Thank you for your interest in Revolut! We wanted to let you know we received your application for
-  <strong>${role}</strong>, and we are delighted that you would consider joining our team.</div>
-              <div class="email-text">Every application is carefully evaluated by real people. Our team will review your application and will contact you
-  if your qualifications match our needs for the role.</div>
-              <div class="email-text">As we're rapidly expanding, our team is engaging in lots of projects, including reviewing your application.<br
-  />Given these circumstances, we can't share any individual feedback to candidates that don't move beyond the initial application review phase.</div>
-              <div class="email-text">If you don't receive an invitation for a screen call or aren't selected for this position, we invite you to keep an
-  eye on our careers page as our growth opens new positions regularly.<br />Thank you again and we wish you the best of luck!</div>
+          // Bulletproof Solid Blue Table Button for 100% display in Gmail Mobile / Titan / Outlook
+          const blueButtonHtml = `
+            <table border="0" cellspacing="0" cellpadding="0" style="margin: 28px 0;">
+              <tr>
+                <td align="left" bgcolor="#0044FF" style="background-color: #0044FF; border-radius: 6px;">
+                  <a href="${url}" target="_blank" style="font-family: 'Inter', system-ui, sans-serif; font-size: 15px; font-weight: 700; color: #ffffff
+  !important; text-decoration: none; padding: 14px 36px; border: 1px solid #0044FF; border-radius: 6px; display: inline-block; background-color: #0044FF;
+  ">
+                    Get Started
+                  </a>
+                </td>
+              </tr>
+            </table>
+          `;
 
-              <div class="email-footer">
-                <div class="social-links">𝕏 &bull; f &bull; 📷 &bull; in</div>
-                <div style="margin-bottom: 12px;"><a href="#" style="color: #1967d2; text-decoration: underline;">Data Privacy Notice for
-  Candidates</a></div>
-                <strong style="text-transform: uppercase; color: #64748b; font-size: 11px;">CONFIDENTIAL</strong><br />
-                This e-mail and any attachments are confidential and intended solely for the addressee. Revolut Ltd is authorised and regulated by the
-  Financial Conduct Authority.
+          // Shared Complete Footer matching Screenshots 3.55.11 PM.jpeg & 3.55.11 PM (1).jpeg
+          const sharedFullFooter = `
+            <div class="email-footer">
+              <div style="margin-bottom: 18px;">
+                <a href="https://twitter.com/revolutapp" target="_blank"><img src="${SOCIAL_X_IMG_URL}" alt="X" class="social-icon-img" /></a>
+                <a href="https://facebook.com/revolutapp" target="_blank"><img src="${SOCIAL_FB_IMG_URL}" alt="Facebook" class="social-icon-img" /></a>
+                <a href="https://instagram.com/revolutapp" target="_blank"><img src="${SOCIAL_IG_IMG_URL}" alt="Instagram" class="social-icon-img" /></a>
+                <a href="https://linkedin.com/company/revolut" target="_blank"><img src="${SOCIAL_LI_IMG_URL}" alt="LinkedIn" class="social-icon-img"
+  /></a>
               </div>
-            `;
-          } else if (selectedPatternKey === 'request') {
-            // EMAIL 2: Assessment Request with Link (Screenshot 195320, 195340, 195352)
-            const sigName = recruiter ? recruiter : '[RECRUITER NAME]';
-            card.innerHTML = `
-              ${logoHeader}
-              <div class="email-greeting">Hi ${name},</div>
-              <div class="email-text">Thank you for your interest in the <strong>${role}</strong> position at Revolut.</div>
-              <div class="email-callout">To further evaluate your qualifications, you're invited to complete the next step in the application process —
-  our interactive assessment.</div>
-              <div class="email-text">Please complete this assessment in a quiet location with no distractions. And take your time to read all
-  instructions carefully before responding.</div>
-              <div class="email-text">From the time this interview request was sent, you have <strong>72 hour(s)</strong> to complete and submit. After
-  completing and submitting your responses, a notification will be sent to Revolut for review.</div>
-              <div class="email-text">To best prepare, we advise you review the instructions and helpful tips that show before you start the assessment.
-  </div>
-              <div class="email-cta-wrap"><a href="${url}" target="_blank" class="email-cta-btn">Get Started</a></div>
-              <div class="email-sig">Thank you,<br /><strong>${sigName}</strong><br /><span style="color: #64748b;">Revolut</span></div>
 
-              <div class="email-footer">
-                <strong>Need help?</strong><br />
-                &bull; <a href="${MODERN_HIRE_HELP_URL}" target="_blank" style="color: #1967d2; text-decoration: underline;">Modern Hire Help
-  Centre</a><br />
-                &bull; <a href="${HIREVUE_EXPLAINABILITY_URL}" target="_blank" style="color: #1967d2; text-decoration: underline;">Hirevue's
-  Explainability Statement</a><br /><br />
-                If the button above isn't working, copy and paste this link in a browser:<br />
-                <a href="${url}" target="_blank" style="color: #1967d2; word-break: break-all;">[${url}]</a><br /><br />
-                <span style="color: #1967d2; text-decoration: underline;">Unsubscribe</span>
+              <div style="margin-bottom: 16px;">
+                <a href="${DATA_PRIVACY_URL}" target="_blank" style="color: #1967d2; font-weight: 600; text-decoration: underline;">Data Privacy Notice
+  for Candidates</a>
               </div>
-            `;
-          } else if (selectedPatternKey === 'outcome') {
-            // EMAIL 3: Application Outcome / Rejection (Screenshot 195503)
-            card.innerHTML = `
-              ${logoHeader}
-              <div class="email-greeting">Hi ${name},</div>
-              <div class="email-text">Thanks for taking the time to complete our HireVue assessment.</div>
-              <div class="email-text">Unfortunately, this time we won't be moving forward with your application.</div>
-              <div class="email-text">Please note that the Revolut cooling-off period lasts six months and applies even if you submit a new application
-  using a different email address.</div>
-              <div class="email-text">While we aren't able to offer personal feedback on HireVue tests, your response helped us evaluate whether this role
-  would be the right one for you, your profile, and Revolut.</div>
-              <div class="email-text">We wish you all the best in your future!</div>
-              <div class="email-sig">Your Revolut Recruitment Team</div>
-              <div class="email-footer"><a href="#" style="color: #1967d2; text-decoration: underline;">Data Privacy Notice for Candidates</a></div>
-            `;
-          } else if (selectedPatternKey === 'reminder') {
-            // EMAIL 4: Reminder Email (Screenshot 200052)
-            const sigName = recruiter ? recruiter : '[RECRUITER NAME]';
-            const sigEmailHtml = recruiterEmail ? `<br /><a href="mailto:${recruiterEmail}" style="color: #1967d2;">${recruiterEmail}</a>` : '';
 
-            card.innerHTML = `
-              ${logoHeader}
-              <div class="email-greeting">${name},</div>
-              <div class="email-text">This is a reminder that you haven't yet submitted your responses for the <strong>${role}</strong> opportunity.</div>
-              <div class="email-cta-wrap">
-                <a href="${url}" target="_blank" style="display: inline-block; border: 1.5px solid #0044FF; color: #0044FF !important; font-weight: 700;
-  font-size: 14px; padding: 10px 20px; border-radius: 4px; text-decoration: none;">
-                  Submit your responses &gt;
-                </a>
-              </div>
-              <div class="email-text">If you need technical assistance, please visit the <a href="${MODERN_HIRE_HELP_URL}" target="_blank" style="color:
-  #1967d2; text-decoration: underline;">Modern Hire Help Centre</a>.</div>
-              <div class="email-sig">
-                <strong>${sigName}</strong><br />
-                <span>Revolut</span>${sigEmailHtml}
-              </div>
-              <div style="text-align: center; margin-top: 30px;">
-                <div style="font-size: 24px; color: #3b82f6;">🌐</div>
-                <div style="height: 3px; background: #000; width: 100%; margin-top: 16px;"></div>
-              </div>
-            `;
-          }
-        }
-
-        function launchEmailProvider() {
-          const email = document.getElementById('candEmail').value.trim();
-          const name = document.getElementById('candName').value.trim() || 'Candidate';
-          const role = document.getElementById('jobTitle').value.trim() || 'FinCrime Analyst (Investigator)';
-          const recruiter = document.getElementById('recruiterName').value.trim() || 'Revolut Team';
-          const url = document.getElementById('candidateLink').value.trim();
-
-          const subjects = {
-            confirm: `Application to ${role} position confirmed`,
-            request: `Revolut Assessment Request - ${role}`,
-            outcome: `Your application for: ${role} - Revolut`,
-            reminder: `Reminder: Complete your Revolut Assessment - ${role}`
-          };
-
-          const subject = subjects[selectedPatternKey];
-          const encSub = encodeURIComponent(subject);
-          const encBody = encodeURIComponent(`Hi ${name},\n\nPlease find your assessment updates below:\n\n${url}\n\nBest regards,
-  \n${recruiter}\nRevolut`);
-
-          window.location.href = `mailto:${email}?subject=${encSub}&body=${encBody}`;
-        }
-
-        function copyEmailHTML() {
-          const card = document.getElementById('emailHTMLCard');
-          navigator.clipboard.writeText(card.outerHTML);
-          alert('Official Revolut Email HTML Copied to Clipboard! You can now paste this directly into Gmail, Outlook, Titan Mail, or Zoho Mail.');
-        }
-
-        function copyEmailText() {
-          const name = document.getElementById('candName').value.trim() || 'Candidate';
-          const role = document.getElementById('jobTitle').value.trim() || 'FinCrime Analyst';
-          const recruiter = document.getElementById('recruiterName').value.trim() || 'Revolut Team';
-          const url = document.getElementById('candidateLink').value.trim();
-
-          const texts = {
-            confirm: `Hi ${name},\n\nThank you for your interest in Revolut! We wanted to let you know we received your application for ${role}.\n\nBest
-  regards,\nRevolut Recruitment Team`,
-            request: `Hi ${name},\n\nThank you for your interest in the ${role} position at Revolut.\n\nTo further evaluate your qualifications, please
-  complete your interactive assessment using the link below:\n\nGET STARTED: ${url}\n\nThank you,\n${recruiter}\nRevolut`,
-            outcome: `Hi ${name},\n\nThanks for taking the time to complete our HireVue assessment.\nUnfortunately, this time we won't be moving forward
-  with your application.\n\nYour Revolut Recruitment Team`,
-            reminder: `Hi ${name},\n\nThis is a reminder that you haven't yet submitted your responses for the ${role} opportunity.\n\nSubmit your
-  responses here: ${url}\n\nThank you,\n${recruiter}\nRevolut`
-          };
-
-          navigator.clipboard.writeText(texts[selectedPatternKey]);
-          alert('Plain Text Copied!');
-        }
-
-        updateEmailPreview();
-      </script>
-    </body>
-    </html>
+              <div class="footer-legal-text">
+                <strong style="text-transform: uppercase; color: #64748b; font-size: 11px; letter-spacing: 0.05em;">CONFIDENTIAL</strong><br />
+                This e-mail and any attachments are confidential and intended solely for the addressee and may also be privileged or exempt from
+  disclosure under applicable law. If you are not the addressee, or have received this e-mail in error, please notify the sender immediately, delete it
+  from your system and do not copy, disclose or otherwise act upon any part of this e-mail or its attachments.<br /><br />
+                Internet communications are not guaranteed to be secure or virus-free. Revolut does not accept responsibility for any loss arising from
+  unauthorised access to, or interference with, any Internet communications by any third party, or from the transmission of any viruses. Replies to this
+  e-mail may be monitored by Revolut for operational or business reasons.<br /><br />
+                Any opinion or other information in this e-mail or its attachments that does not relate to the business of Revolut is personal to the
+  sender and is not given or endorsed by Revolut.<br /><br />
+                Registered Office: 9th Floor <a href="${FIRST_ADDR_MAP_URL}" target="_blank" class="footer-address-link">107 Cheapside, London, EC2V 6DN,
+  United Kingdom</a>. Main Office: 4th Floor, The Columbus Building, <a href="${SECOND_ADDR_MAP_URL}" target="_blank" class="footer-address-link">7
+  Westferry Circus, London, E14 4HD, United Kingdom</a>. Revolut Ltd is authorised and regulated by the Financial Conduct Authority under the Electronic
+  Money Regulations 2011, Firm Reference 900562. Revolut Ltd is an Appointed Representative of Lending Works Ltd (for the activity
