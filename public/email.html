@@ -56,25 +56,6 @@
         .btn-copy-rich:hover { background: #1d4ed8; }
 
         .result-box { margin-top: 24px; padding: 20px; background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 14px; }
-
-        /* EXACT REVOLUT OFFICIAL EMAIL STYLING MATCHING TARGET SCREENSHOTS */
-        .email-container { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; max-width: 600px; margin: 16px auto 0 auto; padding: 36px
-  32px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); font-family: 'Inter', system-ui, -apple-system, sans-serif; color: #0f172a; text-align: left; }
-        .email-logo { text-align: center; margin-bottom: 24px; }
-        .email-greeting-centered { font-size: 36px; font-weight: 900; color: #000000; text-align: center; margin: 24px 0 32px 0; line-height: 1.15;
-  letter-spacing: -0.02em; text-transform: uppercase; }
-        .email-greeting { font-size: 16px; font-weight: 700; color: #0f172a; margin-bottom: 16px; }
-        .email-text { font-size: 14.5px; color: #1e293b; line-height: 1.6; margin-bottom: 20px; }
-        .email-callout { background-color: #eeeeee !important; background: #eeeeee !important; border-radius: 4px; padding: 24px 28px; font-size: 17px;
-  font-weight: 500; color: #000000 !important; line-height: 1.45; text-align: center; margin: 24px 0; }
-        .email-sig { font-size: 14px; color: #0f172a; line-height: 1.6; margin-top: 24px; }
-
-        .email-footer-divider { height: 1px; background: #f1f5f9; margin: 32px 0 24px 0; }
-        .email-footer { font-size: 12.5px; color: #64748b; line-height: 1.6; }
-
-        .social-icon-img { width: 20px; height: 20px; vertical-align: middle; margin-right: 16px; display: inline-block; border: none; }
-        .footer-legal-text { font-size: 11.5px; color: #888888; line-height: 1.55; margin-top: 16px; }
-        .footer-address-link { color: #1967d2 !important; text-decoration: underline; }
       </style>
     </head>
     <body>
@@ -106,7 +87,7 @@
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
               <div class="form-group">
                 <label for="candName">Candidate Full Name</label>
-                <input type="text" id="candName" placeholder="e.g. SAYYED ADIL or MAHIMA GURJAR" value="SAYYED ADIL" oninput="updateEmailPreview()" />
+                <input type="text" id="candName" placeholder="e.g. SAYYED ADIL or MAHIMA GURJAR" value="ADIBA SAYYED" oninput="updateEmailPreview()" />
               </div>
               <div class="form-group">
                 <label for="candEmail">Candidate Email Address</label>
@@ -117,7 +98,7 @@
             <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px;">
               <div class="form-group">
                 <label for="jobTitle">Position / Role Title</label>
-                <input type="text" id="jobTitle" value="FinCrime Analyst (Investigator)" oninput="updateEmailPreview()" />
+                <input type="text" id="jobTitle" value="Phone Support Specialist (Retail)" oninput="updateEmailPreview()" />
               </div>
               <div class="form-group">
                 <label for="recruiterName">Recruiter Name</label>
@@ -157,8 +138,8 @@
   Gmail/Titan/Zoho, and press <strong>Ctrl + V (Paste)</strong>!
               </div>
 
-              <!-- DYNAMIC EMAIL PREVIEW CONTAINER -->
-              <div class="email-container" id="emailHTMLCard"></div>
+              <!-- DYNAMIC EMAIL PREVIEW CONTAINER WITH EXPLICIT INNER WHITE CARD BOX & OUTER GRAY WRAPPER -->
+              <div id="emailHTMLCard"></div>
             </div>
           </div>
         </div>
@@ -202,9 +183,9 @@
         }
 
         function updateEmailPreview() {
-          const rawName = document.getElementById('candName').value.trim() || 'SAYYED ADIL';
+          const rawName = document.getElementById('candName').value.trim() || 'ADIBA SAYYED';
           const formattedName = rawName.toUpperCase();
-          const role = document.getElementById('jobTitle').value.trim() || 'FinCrime Analyst (Investigator)';
+          const role = document.getElementById('jobTitle').value.trim() || 'Phone Support Specialist (Retail)';
           const recruiter = document.getElementById('recruiterName').value.trim() || 'Patrycja Bunalska';
           const recruiterEmail = document.getElementById('recruiterEmail').value.trim();
           const url = document.getElementById('candidateLink').value.trim() || 'https://revolut-hirevue-app-eu.vercel.app';
@@ -212,9 +193,9 @@
 
           const card = document.getElementById('emailHTMLCard');
 
-          // 100% Bulletproof Revolut Logo Table Header (Matching Target Screenshot 3.46.32 PM.jpeg)
+          // 100% Bulletproof Revolut Logo Table Header
           const logoHeader = `
-            <div class="email-logo" style="text-align: center; margin-bottom: 24px;">
+            <div style="text-align: center; margin-bottom: 24px;">
               <a href="${REVOLUT_LOGO_CLICK_URL}" target="_blank" style="text-decoration: none;">
                 <span style="font-family: 'Inter', system-ui, sans-serif; font-size: 28px; font-weight: 900; color: #000000; letter-spacing: -0.04em;
   display: inline-block;">Revolut</span>
@@ -222,7 +203,7 @@
             </div>
           `;
 
-          // Bulletproof Solid Blue Table Button CENTERED for Email 2 (Matching Target Screenshot 3.46.32 PM (1).jpeg)
+          // Bulletproof Solid Blue Table Button CENTERED for Email 2
           const blueButtonCenteredHtml = `
             <table border="0" cellspacing="0" cellpadding="0" align="center" style="margin: 28px auto; text-align: center;">
               <tr>
@@ -239,17 +220,17 @@
 
           // Full Clickable Social Icons + Legal & Address Footer EXCLUSIVELY for Email 1
           const email1FullFooter = `
-            <div class="email-footer-divider"></div>
-            <div class="email-footer">
+            <div style="height: 1px; background: #f1f5f9; margin: 32px 0 24px 0;"></div>
+            <div style="font-size: 12.5px; color: #64748b; line-height: 1.6;">
               <div style="margin-bottom: 18px; display: flex; align-items: center; gap: 14px;">
                 <a href="https://twitter.com/revolutapp" target="_blank" style="text-decoration: none;"><img src="${SOCIAL_X_ICON}" alt="X" width="20"
-  height="20" class="social-icon-img" /></a>
+  height="20" style="vertical-align: middle; margin-right: 14px; border: none;" /></a>
                 <a href="https://facebook.com/revolutapp" target="_blank" style="text-decoration: none;"><img src="${SOCIAL_FB_ICON}" alt="Facebook"
-  width="20" height="20" class="social-icon-img" /></a>
+  width="20" height="20" style="vertical-align: middle; margin-right: 14px; border: none;" /></a>
                 <a href="https://instagram.com/revolutapp" target="_blank" style="text-decoration: none;"><img src="${SOCIAL_IG_ICON}" alt="Instagram"
-  width="20" height="20" class="social-icon-img" /></a>
+  width="20" height="20" style="vertical-align: middle; margin-right: 14px; border: none;" /></a>
                 <a href="https://linkedin.com/company/revolut" target="_blank" style="text-decoration: none;"><img src="${SOCIAL_LI_ICON}" alt="LinkedIn"
-  width="20" height="20" class="social-icon-img" /></a>
+  width="20" height="20" style="vertical-align: middle; margin-right: 14px; border: none;" /></a>
               </div>
 
               <div style="margin-bottom: 16px;">
@@ -257,7 +238,7 @@
   for Candidates</a>
               </div>
 
-              <div class="footer-legal-text">
+              <div style="font-size: 11.5px; color: #888888; line-height: 1.55; margin-top: 16px;">
                 <strong style="text-transform: uppercase; color: #64748b; font-size: 11px; letter-spacing: 0.05em;">CONFIDENTIAL</strong><br />
                 This e-mail and any attachments are confidential and intended solely for the addressee and may also be privileged or exempt from
   disclosure under applicable law. If you are not the addressee, or have received this e-mail in error, please notify the sender immediately, delete it
@@ -267,8 +248,8 @@
   e-mail may be monitored by Revolut for operational or business reasons.<br /><br />
                 Any opinion or other information in this e-mail or its attachments that does not relate to the business of Revolut is personal to the
   sender and is not given or endorsed by Revolut.<br /><br />
-                Registered Office: 9th Floor <a href="${FIRST_ADDR_MAP_URL}" target="_blank" class="footer-address-link">107 Cheapside, London, EC2V 6DN,
-  United Kingdom</a>. Main Office: 4th Floor, The Columbus Building, <a href="${SECOND_ADDR_MAP_URL}" target="_blank" class="footer-address-link">7
-  Westferry Circus, London, E14 4HD, United Kingdom</a>. Revolut Ltd is authorised and regulated by the Financial Conduct Authority under the Electronic
-  Money Regulations 2011, Firm Reference 900562. Revolut Ltd is an Appointed Representative of Lending Works Ltd (for the activity of “operating an
-  electronic system for lending” only)
+                Registered Office: 9th Floor <a href="${FIRST_ADDR_MAP_URL}" target="_blank" style="color: #1967d2 !important; text-decoration: underline;
+  ">107 Cheapside, London, EC2V 6DN, United Kingdom</a>. Main Office: 4th Floor, The Columbus Building, <a href="${SECOND_ADDR_MAP_URL}" target="_blank"
+  style="color: #1967d2 !important; text-decoration: underline;">7 Westferry Circus, London, E14 4HD, United Kingdom</a>. Revolut Ltd is authorised and
+  regulated by the Financial Conduct Authority under the Electronic Money Regulations 2011, Firm Reference 900562. Revolut Ltd is an Appointed
+  Representative of Lending Works Ltd (for the activity
