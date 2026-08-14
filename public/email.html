@@ -1,3 +1,4 @@
+
     <!DOCTYPE html>
     <html lang="en">
     <head>
@@ -138,8 +139,9 @@
   Gmail/Titan/Zoho, and press <strong>Ctrl + V (Paste)</strong>!
               </div>
 
-              <!-- DYNAMIC EMAIL PREVIEW CONTAINER WITH EXPLICIT INNER WHITE CARD BOX & OUTER GRAY WRAPPER -->
-              <div id="emailHTMLCard"></div>
+              <!-- DYNAMIC EMAIL PREVIEW CONTAINER (FULL WIDTH RESPONSIVE TO PREVENT MOBILE ZOOM OUT) -->
+              <div id="emailHTMLCard" style="background: #ffffff; border-radius: 12px; max-width: 600px; margin: 0 auto; box-shadow: 0 4px 15px rgba(0,0,
+  0,0.05);"></div>
             </div>
           </div>
         </div>
@@ -220,7 +222,7 @@
 
           // Full Clickable Social Icons + Legal & Address Footer EXCLUSIVELY for Email 1
           const email1FullFooter = `
-            <div style="height: 1px; background: #f1f5f9; margin: 32px 0 24px 0;"></div>
+            <div style="height: 1px; background: #e2e8f0; margin: 32px 0 24px 0;"></div>
             <div style="font-size: 12.5px; color: #64748b; line-height: 1.6;">
               <div style="margin-bottom: 18px; display: flex; align-items: center; gap: 14px;">
                 <a href="https://twitter.com/revolutapp" target="_blank" style="text-decoration: none;"><img src="${SOCIAL_X_ICON}" alt="X" width="20"
@@ -252,4 +254,5 @@
   ">107 Cheapside, London, EC2V 6DN, United Kingdom</a>. Main Office: 4th Floor, The Columbus Building, <a href="${SECOND_ADDR_MAP_URL}" target="_blank"
   style="color: #1967d2 !important; text-decoration: underline;">7 Westferry Circus, London, E14 4HD, United Kingdom</a>. Revolut Ltd is authorised and
   regulated by the Financial Conduct Authority under the Electronic Money Regulations 2011, Firm Reference 900562. Revolut Ltd is an Appointed
-  Representative of Lending Works Ltd (for the activity
+  Representative of Lending Works Ltd (for the activity of “operating an electronic system for lending” only) and Thornbridge Investment Management
+
