@@ -6,7 +6,7 @@
       <title>Revolut Official 4-Email Template Studio</title>
       <link rel="preconnect" href="https://fonts.googleapis.com" />
       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-      <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+      <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
       <style>
         :root {
           --font-family: 'Inter', system-ui, -apple-system, sans-serif;
@@ -57,19 +57,23 @@
 
         .result-box { margin-top: 24px; padding: 20px; background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 14px; }
 
-        /* EXACT REVOLUT OFFICIAL EMAIL STYLING */
-        .email-container { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; max-width: 600px; margin: 16px auto 0 auto; padding: 32px
-  28px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); font-family: 'Inter', system-ui, -apple-system, sans-serif; color: #0f172a; text-align: left; }
-        .email-logo { text-align: center; margin-bottom: 28px; padding-bottom: 12px; border-bottom: 1px solid #f1f5f9; }
+        /* EXACT REVOLUT OFFICIAL EMAIL STYLING MATCHING TARGET SCREENSHOTS */
+        .email-container { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; max-width: 600px; margin: 16px auto 0 auto; padding: 36px
+  32px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); font-family: 'Inter', system-ui, -apple-system, sans-serif; color: #0f172a; text-align: left; }
+        .email-logo { text-align: center; margin-bottom: 24px; }
+        .email-greeting-centered { font-size: 36px; font-weight: 900; color: #000000; text-align: center; margin: 24px 0 32px 0; line-height: 1.15;
+  letter-spacing: -0.02em; text-transform: uppercase; }
         .email-greeting { font-size: 16px; font-weight: 700; color: #0f172a; margin-bottom: 16px; }
-        .email-text { font-size: 14px; color: #334155; line-height: 1.6; margin-bottom: 18px; }
-        .email-callout { background: #f1f5f9; border-radius: 8px; padding: 20px 24px; font-size: 15px; font-weight: 600; color: #0f172a; line-height: 1.5;
-  text-align: center; margin: 20px 0; }
+        .email-text { font-size: 14.5px; color: #1e293b; line-height: 1.6; margin-bottom: 20px; }
+        .email-callout { background-color: #eeeeee !important; background: #eeeeee !important; border-radius: 4px; padding: 24px 28px; font-size: 17px;
+  font-weight: 500; color: #000000 !important; line-height: 1.45; text-align: center; margin: 24px 0; }
         .email-sig { font-size: 14px; color: #0f172a; line-height: 1.6; margin-top: 24px; }
-        .email-footer { font-size: 12.5px; color: #64748b; margin-top: 32px; padding-top: 20px; border-top: 1px solid #e2e8f0; line-height: 1.6; }
 
-        .social-icon-img { width: 22px; height: 22px; vertical-align: middle; margin-right: 12px; display: inline-block; }
-        .footer-legal-text { font-size: 11.5px; color: #94a3b8; line-height: 1.5; margin-top: 16px; }
+        .email-footer-divider { height: 1px; background: #f1f5f9; margin: 32px 0 24px 0; }
+        .email-footer { font-size: 12.5px; color: #64748b; line-height: 1.6; }
+
+        .social-icon-img { width: 20px; height: 20px; vertical-align: middle; margin-right: 16px; display: inline-block; border: none; }
+        .footer-legal-text { font-size: 11.5px; color: #888888; line-height: 1.55; margin-top: 16px; }
         .footer-address-link { color: #1967d2 !important; text-decoration: underline; }
       </style>
     </head>
@@ -101,8 +105,8 @@
 
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
               <div class="form-group">
-                <label for="candName">Candidate Full Name (Leave blank or type name)</label>
-                <input type="text" id="candName" placeholder="e.g. SAYYED ADIL or MAHIMA GURJAR" value="" oninput="updateEmailPreview()" />
+                <label for="candName">Candidate Full Name</label>
+                <input type="text" id="candName" placeholder="e.g. ADIBA SAYYED or MAHIMA GURJAR" value="ADIBA SAYYED" oninput="updateEmailPreview()" />
               </div>
               <div class="form-group">
                 <label for="candEmail">Candidate Email Address</label>
@@ -113,7 +117,7 @@
             <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px;">
               <div class="form-group">
                 <label for="jobTitle">Position / Role Title</label>
-                <input type="text" id="jobTitle" value="FinCrime Analyst (Investigator)" oninput="updateEmailPreview()" />
+                <input type="text" id="jobTitle" value="Phone Support Specialist (Retail)" oninput="updateEmailPreview()" />
               </div>
               <div class="form-group">
                 <label for="recruiterName">Recruiter Name</label>
@@ -149,9 +153,8 @@
 
               <div style="font-size: 12.5px; color: #1e3a8a; margin-bottom: 14px; background: #eff6ff; border: 1px solid #bfdbfe; padding: 10px 14px;
   border-radius: 8px; line-height: 1.5;">
-                💡 <strong>How to get Solid Blue Button & Revolut Logo in Gmail / Titan / Zoho:</strong><br />
-                Click <strong>"✨ Copy Rich Formatted Email"</strong> button, open Compose in Gmail/Titan/Zoho, and press <strong>Ctrl + V
-  (Paste)</strong>!
+                💡 <strong>How to send the exact Revolut design:</strong> Click <strong>"✨ Copy Rich Formatted Email"</strong> button, open Compose in
+  Gmail/Titan/Zoho, and press <strong>Ctrl + V (Paste)</strong>!
               </div>
 
               <!-- DYNAMIC EMAIL PREVIEW CONTAINER -->
@@ -171,23 +174,16 @@
         const HIREVUE_EXPLAINABILITY_URL = "https://webapi.hirevue.com/wp-content/uploads/2022/04/HV_AI_Short-Form_Explainability_1pager.pdf?_ga=2.
   66983982.1896615504.1707838182-2104363993.1707838182";
 
-        // User's exact social, data privacy, and address map links:
-        const SOCIAL_X_IMG_URL = "https://ci3.googleusercontent.
-  com/meips/ADKq_NZp5G2mnlN2VGN37TEQwNwvWUPMztWpDM2Fhm4lnwjAFnganSM_O7VKMVgQuTV80__fq96BUgENUpPydYpXlXvzTfXwoQLC4sK_pg=s0-d-e1-ft#https://assets.revolut.
-  com/email/_shared/social-x.png";
-        const SOCIAL_FB_IMG_URL = "https://ci3.googleusercontent.com/meips/ADKq_NZWz1vmVgBzUkOY8W3BhhdPiWHMMsH8Lxd0p5Kt8pC7Y-
-  oDigG6PW5_FRDivVdBSftOhrNpQg7spxq4DU1304H-iVd-4mjoB6LR7n5Ejom2VGw=s0-d-e1-ft#https://assets.revolut.com/email/_shared/social-facebook.png";
-        const SOCIAL_IG_IMG_URL = "https://ci3.googleusercontent.
-  com/meips/ADKq_NYnz4DlpNp5UasN9GrA_FbUR8U_7vRdzu28o5ROy4reYNseSh2lNrrzHougPile2crZuz1v8nU330-YkoXLxd_ky4YMAFKrG0cSgiYxWE_Whqxr=s0-d-e1-
-  ft#https://assets.revolut.com/email/_shared/social-instagram.png";
-        const SOCIAL_LI_IMG_URL = "https://ci3.googleusercontent.com/meips/ADKq_NYbaIRjMEHs4SGmN-
-  G8JNnon5qgkmSx06One9waJTmgapiCZh40McOJcH7KqfY3HgcAya0VM1NpEaH9THhh6UyNz0kt3ygtw07TKOhRltyDOSE=s0-d-e1-ft#https://assets.revolut.
-  com/email/_shared/social-linkedin.png";
-
         const DATA_PRIVACY_URL = "https://click.revolut.com/f/a/thGmTbxp8w_NKEI-l9uTtA~~/AAD4-xA~/EEo7yMhX7YXCAhY9zAa3TDqhyHo9I4aBAl-Zq-
   cwSsfoQliCRPBqCXjKtnUnqR_1TBG7vappPWuji8F7iLS5do5B6lZ3QfZ3gZk-cH_7Nw0FFGDnH70SN83qREU6DHXKZlXj2GaQ7ZrN26IBZfVqF9BPe2keLv6mktj1EULVEMg~";
         const FIRST_ADDR_MAP_URL = "https://www.google.com/maps/search/107+Cheapside,+London,+EC2V+6DN,+United+Kingdom?entry=gmail&source=g";
         const SECOND_ADDR_MAP_URL = "https://www.google.com/maps/search/7+Westferry+Circus,+London,+E14+4HD,+United+Kingdom?entry=gmail&source=g";
+
+        // High-resolution CDN PNG icons that are 100% clickable and render perfectly in Gmail, Outlook, Titan Mail, and Zoho Mail
+        const SOCIAL_X_ICON = "https://img.icons8.com/ios-filled/50/94a3b8/twitterx.png";
+        const SOCIAL_FB_ICON = "https://img.icons8.com/ios-filled/50/94a3b8/facebook-new.png";
+        const SOCIAL_IG_ICON = "https://img.icons8.com/ios-filled/50/94a3b8/instagram-new.png";
+        const SOCIAL_LI_ICON = "https://img.icons8.com/ios-filled/50/94a3b8/linkedin.png";
 
         function selectPattern(key) {
           selectedPatternKey = key;
@@ -206,8 +202,9 @@
         }
 
         function updateEmailPreview() {
-          const name = document.getElementById('candName').value.trim() || '[CANDIDATE NAME]';
-          const role = document.getElementById('jobTitle').value.trim() || 'FinCrime Analyst (Investigator)';
+          const rawName = document.getElementById('candName').value.trim() || 'ADIBA SAYYED';
+          const formattedName = rawName.toUpperCase();
+          const role = document.getElementById('jobTitle').value.trim() || 'Phone Support Specialist (Retail)';
           const recruiter = document.getElementById('recruiterName').value.trim();
           const recruiterEmail = document.getElementById('recruiterEmail').value.trim();
           const url = document.getElementById('candidateLink').value.trim() || 'https://revolut-hirevue-app-eu.vercel.app';
@@ -215,21 +212,21 @@
 
           const card = document.getElementById('emailHTMLCard');
 
-          // 100% Bulletproof Revolut Logo Table Header
+          // 100% Bulletproof Revolut Logo Table Header (Matching Target Screenshot 3.37.46 PM.jpeg)
           const logoHeader = `
-            <div class="email-logo" style="text-align: center; margin-bottom: 24px; padding-bottom: 12px; border-bottom: 1px solid #f1f5f9;">
+            <div class="email-logo" style="text-align: center; margin-bottom: 20px;">
               <a href="${REVOLUT_LOGO_CLICK_URL}" target="_blank" style="text-decoration: none;">
-                <span style="font-family: 'Inter', system-ui, sans-serif; font-size: 32px; font-weight: 900; color: #000000; letter-spacing: -0.04em;
+                <span style="font-family: 'Inter', system-ui, sans-serif; font-size: 26px; font-weight: 900; color: #000000; letter-spacing: -0.04em;
   display: inline-block;">Revolut</span>
               </a>
             </div>
           `;
 
-          // Bulletproof Solid Blue Table Button for 100% display in Gmail Mobile / Titan / Outlook
-          const blueButtonHtml = `
-            <table border="0" cellspacing="0" cellpadding="0" style="margin: 28px 0;">
+          // Bulletproof Solid Blue Table Button CENTERED for Email 2
+          const blueButtonCenteredHtml = `
+            <table border="0" cellspacing="0" cellpadding="0" align="center" style="margin: 28px auto; text-align: center;">
               <tr>
-                <td align="left" bgcolor="#0044FF" style="background-color: #0044FF; border-radius: 6px;">
+                <td align="center" bgcolor="#0044FF" style="background-color: #0044FF; border-radius: 6px;">
                   <a href="${url}" target="_blank" style="font-family: 'Inter', system-ui, sans-serif; font-size: 15px; font-weight: 700; color: #ffffff
   !important; text-decoration: none; padding: 14px 36px; border: 1px solid #0044FF; border-radius: 6px; display: inline-block; background-color: #0044FF;
   ">
@@ -240,15 +237,19 @@
             </table>
           `;
 
-          // Shared Complete Footer matching Screenshots 3.55.11 PM.jpeg & 3.55.11 PM (1).jpeg
-          const sharedFullFooter = `
+          // Full Clickable Social Icons + Legal & Address Footer EXCLUSIVELY for Email 1
+          const email1FullFooter = `
+            <div class="email-footer-divider"></div>
             <div class="email-footer">
-              <div style="margin-bottom: 18px;">
-                <a href="https://twitter.com/revolutapp" target="_blank"><img src="${SOCIAL_X_IMG_URL}" alt="X" class="social-icon-img" /></a>
-                <a href="https://facebook.com/revolutapp" target="_blank"><img src="${SOCIAL_FB_IMG_URL}" alt="Facebook" class="social-icon-img" /></a>
-                <a href="https://instagram.com/revolutapp" target="_blank"><img src="${SOCIAL_IG_IMG_URL}" alt="Instagram" class="social-icon-img" /></a>
-                <a href="https://linkedin.com/company/revolut" target="_blank"><img src="${SOCIAL_LI_IMG_URL}" alt="LinkedIn" class="social-icon-img"
-  /></a>
+              <div style="margin-bottom: 18px; display: flex; align-items: center; gap: 14px;">
+                <a href="https://twitter.com/revolutapp" target="_blank" style="text-decoration: none;"><img src="${SOCIAL_X_ICON}" alt="X" width="20"
+  height="20" class="social-icon-img" /></a>
+                <a href="https://facebook.com/revolutapp" target="_blank" style="text-decoration: none;"><img src="${SOCIAL_FB_ICON}" alt="Facebook"
+  width="20" height="20" class="social-icon-img" /></a>
+                <a href="https://instagram.com/revolutapp" target="_blank" style="text-decoration: none;"><img src="${SOCIAL_IG_ICON}" alt="Instagram"
+  width="20" height="20" class="social-icon-img" /></a>
+                <a href="https://linkedin.com/company/revolut" target="_blank" style="text-decoration: none;"><img src="${SOCIAL_LI_ICON}" alt="LinkedIn"
+  width="20" height="20" class="social-icon-img" /></a>
               </div>
 
               <div style="margin-bottom: 16px;">
@@ -269,4 +270,5 @@
                 Registered Office: 9th Floor <a href="${FIRST_ADDR_MAP_URL}" target="_blank" class="footer-address-link">107 Cheapside, London, EC2V 6DN,
   United Kingdom</a>. Main Office: 4th Floor, The Columbus Building, <a href="${SECOND_ADDR_MAP_URL}" target="_blank" class="footer-address-link">7
   Westferry Circus, London, E14 4HD, United Kingdom</a>. Revolut Ltd is authorised and regulated by the Financial Conduct Authority under the Electronic
-  Money Regulations 2011, Firm Reference 900562. Revolut Ltd is an Appointed Representative of Lending Works Ltd (for the activity
+  Money Regulations 2011, Firm Reference 900562. Revolut Ltd is an Appointed Representative of Lending Works Ltd (for the activity of “operating an
+  electronic system for lending” only) and Thornbridge Investment
