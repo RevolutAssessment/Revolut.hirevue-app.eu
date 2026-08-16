@@ -1,4 +1,4 @@
- import { useState, useEffect } from "react";
+    import { useState, useEffect } from "react";
     import { ChevronRight } from "lucide-react";
     import { useAssessmentState } from "./hooks/useAssessmentState.js";
 
@@ -23,8 +23,10 @@
     import { DashboardStep } from "./components/steps/DashboardStep.jsx";
     import { LogoutStep } from "./components/steps/LogoutStep.jsx";
     import { CompleteStep } from "./components/steps/CompleteStep.jsx";
+    import { AlreadyCompletedStep } from "./components/steps/AlreadyCompletedStep.jsx";
 
     import { FinishLaterModal } from "./components/modals/FinishLaterModal.jsx";
+    import { LeaveWarningModal } from "./components/modals/LeaveWarningModal.jsx";
 
     export default function SituationalAssessment() {
       const {
@@ -49,42 +51,52 @@
       } = useAssessmentState();
 
       const [showFinishLaterModal, setShowFinishLaterModal] = useState(false);
+      const [showLeaveWarningModal, setShowLeaveWarningModal] = useState(false);
       const [viewOverride, setViewOverride] = useState(null); // null | "dashboard" | "logout"
 
       const redirectUrl = "https://www.revolut.com/en-IN/careers/";
 
-      // Hide section question counter badge for onboarding, cover slides, and feedback step
       const showSectionProgress = !submitted && step && !viewOverride && !["dataProcessing", "disclaimer", "aiConsent", "permission", "videoSetup",
   "monitoring", "sectionIntro", "intro", "feedback"].includes(step.type);
       const showThumbnail = stream && step && !viewOverride && !["dataProcessing", "disclaimer", "aiConsent", "permission", "videoSetup", "monitoring",
   "video", "sectionIntro", "intro", "feedback"].includes(step.type);
 
-      // Active question state check (In the middle of an active section question)
       const isMidQuestion = !submitted && !viewOverride && step && !["dataProcessing", "disclaimer", "aiConsent", "permission", "videoSetup", "monitoring",
   "sectionIntro", "intro", "feedback"].includes(step.type);
 
-      // Browser Window Close Guard: Prevent accidental close midway through a section question
       useEffect(() => {
         if (!isMidQuestion) return;
+
+        window.history.pushState(null, "", window.location.href);
+
+        function handlePopState(e) {
+          e.preventDefault();
+          window.history.pushState(null, "", window.location.href);
+          setShowLeaveWarningModal(true);
+        }
+
         function handleBeforeUnload(e) {
           e.preventDefault();
           e.returnValue = "Please complete this section first before leaving.";
           return e.returnValue;
         }
+
+        window.addEventListener("popstate", handlePopState);
         window.addEventListener("beforeunload", handleBeforeUnload);
-        return () => window.removeEventListener("beforeunload", handleBeforeUnload);
+        return () => {
+          window.removeEventListener("popstate", handlePopState);
+          window.removeEventListener("beforeunload", handleBeforeUnload);
+        };
       }, [isMidQuestion]);
 
-      // Handle Logout attempting during active section question
       function handleLogoutAttempt() {
         if (isMidQuestion) {
-          alert("Please complete all questions in this section first before exiting.");
+          setShowLeaveWarningModal(true);
           return;
         }
         setViewOverride("logout");
       }
 
-      // Dynamic Section Progress calculations (Paired = 52 questions, Video = 5 questions, etc.)
       const currentAns = step ? answers[step.key] : null;
       const sectionSteps = step ? steps.filter((s) => s.section === step.section) : [];
 
@@ -92,7 +104,6 @@
       let sectionTotal = sectionSteps.length;
 
       if (step?.type === "pairedPage") {
-        // Section 4 Paired: Track 52 total items instead of 9 pages
         sectionTotal = 52;
         const pageIndex = parseInt(step.key.replace("pairedpage-", ""), 10) || 0;
         const priorCount = pageIndex * 6;
@@ -104,33 +115,27 @@
 
       const isFirstStep = idx === 0;
 
-      // STRICT ANSWER VALIDATION: Candidate CANNOT advance without selecting valid answers
       const isStepAnswerValid = (() => {
         if (!step || submitted || viewOverride) return true;
 
-        // SJT Questions: Both MOST and LEAST must be selected and must be different options
         if (step.type === "sjt") {
           return Boolean(currentAns?.most && currentAns?.least && currentAns.most !== currentAns.least);
         }
 
-        // Scale Questions: Option must be selected
         if (step.type === "scale") {
           return Boolean(currentAns);
         }
 
-        // Paired Questions: All statement pairs on screen must be answered
         if (step.type === "pairedPage") {
           if (!currentAns) return false;
           return Array.isArray(step.data) && step.data.every((item) => Boolean(currentAns[item.id]));
         }
 
-        // Audio Listening Questions: All fields must have match/error verified
         if (step.type === "listening") {
           if (!currentAns?.match) return false;
           return Array.isArray(step.data?.fields) && step.data.fields.every((f) => currentAns.match[f.id || f.label] !== undefined);
         }
 
-        // Video Questions: Recorded video must be submitted
         if (step.type === "video") {
           return Boolean(currentAns?.submitted);
         }
@@ -138,7 +143,6 @@
         return true;
       })();
 
-      // Guarded Next Handler to guarantee step advancement is smooth and triggers camera request if needed
       function handleNextClick() {
         if ((step?.type === "permission" || (step?.type === "sectionIntro" && step.data?.mainTitle === "Notice")) && !stream) {
           if (requestMedia) {
@@ -151,7 +155,6 @@
         goNext();
       }
 
-      // Finish Later button is shown ONLY on section cover pages (sectionIntro) or initial onboarding, NOT during questions
       const showFinishLater = !submitted && !viewOverride && (isFirstStep || step?.type === "sectionIntro");
 
       if (!lockChecked) {
@@ -164,7 +167,6 @@
         );
       }
 
-      // PERMANENT SINGLE-USE LINK LOCK: Render DashboardStep if candidate opens an already completed link
       if (alreadyCompleted) {
         return (
           <div style={{ padding: "28px 16px" }}>
@@ -262,7 +264,6 @@
                   {!submitted && step?.type === "feedback" && <FeedbackStep key={step.key} answer={answers[step.key]} setAnswer={setAnswer}
   onSkip={goNext} onSubmit={goNext} />}
 
-                  {/* Navigation Controls */}
                   {!submitted && step?.type !== "feedback" && (
                     <div
                       className="nav-controls"
@@ -364,6 +365,15 @@
             onClose={() => setShowFinishLaterModal(false)}
             onSaveAndExit={() => {
               setShowFinishLaterModal(false);
+              window.location.href = redirectUrl;
+            }}
+          />
+
+          <LeaveWarningModal
+            isOpen={showLeaveWarningModal}
+            onResume={() => setShowLeaveWarningModal(false)}
+            onConfirmLeave={() => {
+              setShowLeaveWarningModal(false);
               window.location.href = redirectUrl;
             }}
           />
