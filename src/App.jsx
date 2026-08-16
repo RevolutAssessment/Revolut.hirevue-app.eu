@@ -1,3 +1,4 @@
+
     import { useState, useEffect } from "react";
     import { ChevronRight } from "lucide-react";
     import { useAssessmentState } from "./hooks/useAssessmentState.js";
@@ -23,7 +24,6 @@
     import { DashboardStep } from "./components/steps/DashboardStep.jsx";
     import { LogoutStep } from "./components/steps/LogoutStep.jsx";
     import { CompleteStep } from "./components/steps/CompleteStep.jsx";
-    import { AlreadyCompletedStep } from "./components/steps/AlreadyCompletedStep.jsx";
 
     import { FinishLaterModal } from "./components/modals/FinishLaterModal.jsx";
     import { LeaveWarningModal } from "./components/modals/LeaveWarningModal.jsx";
@@ -56,10 +56,10 @@
 
       const redirectUrl = "https://www.revolut.com/en-IN/careers/";
 
-      const showSectionProgress = !submitted && step && !viewOverride && !["dataProcessing", "disclaimer", "aiConsent", "permission", "videoSetup",
-  "monitoring", "sectionIntro", "intro", "feedback"].includes(step.type);
-      const showThumbnail = stream && step && !viewOverride && !["dataProcessing", "disclaimer", "aiConsent", "permission", "videoSetup", "monitoring",
-  "video", "sectionIntro", "intro", "feedback"].includes(step.type);
+      const showSectionProgress = !submitted && step && !viewOverride && !["dataProcessing", "disclaimer", "aiConsent", "permission", "videoSetup", "monitoring",
+  "sectionIntro", "intro", "feedback"].includes(step.type);
+      const showThumbnail = stream && step && !viewOverride && !["dataProcessing", "disclaimer", "aiConsent", "permission", "videoSetup", "monitoring", "video",
+  "sectionIntro", "intro", "feedback"].includes(step.type);
 
       const isMidQuestion = !submitted && !viewOverride && step && !["dataProcessing", "disclaimer", "aiConsent", "permission", "videoSetup", "monitoring",
   "sectionIntro", "intro", "feedback"].includes(step.type);
@@ -189,8 +189,7 @@
                   This Assessment Link Has Expired
                 </h2>
                 <p style={{ fontSize: 14.5, color: "var(--color-text-body)", lineHeight: 1.6, maxWidth: 460, margin: "0 auto" }}>
-                  This invitation link was valid for 72 hours and is no longer active. Please contact your recruiting representative to request a new
-  assessment link.
+                  This invitation link was valid for 72 hours and is no longer active. Please contact your recruiting representative to request a new assessment link.
                 </p>
               </div>
             </div>
@@ -226,13 +225,12 @@
                   {submitted && <CompleteStep />}
                   {!submitted && (!step || step.type === "dataProcessing" || step.type === "intro") && <DataProcessingStep key={step?.key || "dp"} />}
                   {!submitted && step?.type === "disclaimer" && <DisclaimerStep key={step.key} />}
-                  {!submitted && step?.type === "aiConsent" && <AIConsentStep key={step.key} consent={aiConsent} setConsent={setAiConsent} onNext={goNext}
-  />}
-                  {!submitted && step?.type === "permission" && <PermissionStep key={step.key} stream={stream} streamStatus={streamStatus}
-  onRequest={requestMedia} onNext={goNext} />}
+                  {!submitted && step?.type === "aiConsent" && <AIConsentStep key={step.key} consent={aiConsent} setConsent={setAiConsent} onNext={goNext} />}
+                  {!submitted && step?.type === "permission" && <PermissionStep key={step.key} stream={stream} streamStatus={streamStatus} onRequest={requestMedia}
+  onNext={goNext} />}
                   {!submitted && step?.type === "videoSetup" && <VideoSetupStep key={step.key} stream={stream} />}
-                  {!submitted && step?.type === "monitoring" && <MonitoringConsentStep key={step.key} agreed={monitoringAgreed}
-  setAgreed={setMonitoringAgreed} stream={stream} />}
+                  {!submitted && step?.type === "monitoring" && <MonitoringConsentStep key={step.key} agreed={monitoringAgreed} setAgreed={setMonitoringAgreed}
+  stream={stream} />}
 
                   {!submitted && step?.type === "sectionIntro" && (
                     <SectionIntroStep
@@ -244,12 +242,9 @@
                     />
                   )}
                   {!submitted && step?.type === "sjt" && <SJTStep key={step.key} item={step.data} answer={answers[step.key]} setAnswer={setAnswer} />}
-                  {!submitted && step?.type === "pairedPage" && <PairedPageStep key={step.key} items={step.data} answer={answers[step.key]}
-  setAnswer={setAnswer} />}
-                  {!submitted && step?.type === "scale" && <ScaleListStep key={step.key} item={step.data} answer={answers[step.key]} setAnswer={setAnswer}
-  />}
-                  {!submitted && step?.type === "listening" && <ListeningStep key={step.key} item={step.data} answer={answers[step.key]}
-  setAnswer={setAnswer} />}
+                  {!submitted && step?.type === "pairedPage" && <PairedPageStep key={step.key} items={step.data} answer={answers[step.key]} setAnswer={setAnswer} />}
+                  {!submitted && step?.type === "scale" && <ScaleListStep key={step.key} item={step.data} answer={answers[step.key]} setAnswer={setAnswer} />}
+                  {!submitted && step?.type === "listening" && <ListeningStep key={step.key} item={step.data} answer={answers[step.key]} setAnswer={setAnswer} />}
                   {!submitted && step?.type === "video" && (
                     <VideoStep
                       key={step.key}
@@ -261,8 +256,8 @@
                       onAutoNext={goNext}
                     />
                   )}
-                  {!submitted && step?.type === "feedback" && <FeedbackStep key={step.key} answer={answers[step.key]} setAnswer={setAnswer}
-  onSkip={goNext} onSubmit={goNext} />}
+                  {!submitted && step?.type === "feedback" && <FeedbackStep key={step.key} answer={answers[step.key]} setAnswer={setAnswer} onSkip={goNext}
+  onSubmit={goNext} />}
 
                   {!submitted && step?.type !== "feedback" && (
                     <div
