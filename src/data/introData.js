@@ -34,7 +34,7 @@ export const dataProcessingContent = {
 
 export const disclaimerContent = {
   title: "Disclaimer - Revolut",
-  body: `If the use of AI is present in our tests, we will present you with the possibility to opt out. If you require special allowances, please contact recruitment@revolut.com and opt out of the use of AI (if applicable) so we can determine and assess the appropriate type of allowance based on your condition.`,
+  body: `If the use of AI is present in our tests, we will present you with the possibility to opt out. If you require special allowances, please contact recruitment@revolutind.com and opt out of the use of AI (if applicable) so we can determine and assess the appropriate type of allowance based on your condition.`,
 };
 
 export const aiBiasInfoContent = {
